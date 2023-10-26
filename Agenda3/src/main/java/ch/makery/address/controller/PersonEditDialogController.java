@@ -76,6 +76,12 @@ public class PersonEditDialogController {
         personVO=cvp.convertirPersonaVO(person);
         am.crearPersonVO(personVO);
     }
+    public void editarPersonAPersonVO(Person person) throws ExcepcionPerson {
+        cvp=new ConversionVO_Person();
+        PersonVO personVO=new PersonVO();
+        personVO=cvp.convertirPersonaVO(person);
+        am.editarPersonVO(personVO);
+    }
     public void setModelo(AgendaModelo am) {
         this.am=am;
     }
@@ -92,7 +98,7 @@ public class PersonEditDialogController {
      * Called when the user clicks ok.
      */
     @FXML
-    private void handleOk() throws ExcepcionPerson {
+    private void handleOk() {
         if (isInputValid()) {
             person.setFirstName(firstNameField.getText());
             person.setLastName(lastNameField.getText());
@@ -100,8 +106,31 @@ public class PersonEditDialogController {
             person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
             person.setCity(cityField.getText());
             person.setBirthday(DateUtil.parse(birthdayField.getText()));
-            CrearPersonAPersonVO(person);
-            okClicked = true;
+            if(person.getIdentificador()==null){
+                try{
+                    CrearPersonAPersonVO(person);
+                    okClicked = true;
+                }catch(ExcepcionPerson e){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Error al añadir la persona");
+                    alert.setTitle("Error con la base de datos");
+                    alert.setContentText("No se puede conectar con la base de datos para añadir la persona");
+                    alert.showAndWait();
+                    handleCancel();
+                }
+            }else{
+                try{
+                    editarPersonAPersonVO(person);
+                    okClicked = true;
+                }catch(ExcepcionPerson e){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Error al editar la persona");
+                    alert.setTitle("Error con la base de datos");
+                    alert.setContentText("No se puede conectar con la base de datos para editar la persona");
+                    alert.showAndWait();
+                    handleCancel();
+                }
+            }
             dialogStage.close();
         }
     }

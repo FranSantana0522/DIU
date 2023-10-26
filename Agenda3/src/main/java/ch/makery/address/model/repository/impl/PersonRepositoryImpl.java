@@ -4,8 +4,7 @@ package ch.makery.address.model.repository.impl;
 
 import ch.makery.address.model.ExcepcionPerson;
 import ch.makery.address.model.PersonVO;
-import ch.makery.address.model.repository.Personrepository;
-import javafx.scene.control.Alert;
+import ch.makery.address.model.repository.PersonRepository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +13,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class PersonRepositoryImpl implements Personrepository {
+public class PersonRepositoryImpl implements PersonRepository {
     private final ConexionJDBC conexion = new ConexionJDBC();
     private Statement stmt;
     private String sentencia;
@@ -76,11 +75,11 @@ public class PersonRepositoryImpl implements Personrepository {
         }
     }
 
-    public void editPerson(PersonVO PersonVO, Integer id) throws ExcepcionPerson {
+    public void editPerson(PersonVO PersonVO) throws ExcepcionPerson {
         try {
             Connection conn = this.conexion.conectarBD();
             this.stmt = conn.createStatement();
-            String sql = String.format("UPDATE Persona SET Nombre = '%s', Apellido = '%s', Calle = '%s', Codigo_Postal = '%s', Ciudad = '%s', Año_nacimiento = '%s' WHERE Identificador = %d", PersonVO.getNombre(), PersonVO.getApellido(),PersonVO.getCalle(),PersonVO.getCodigoPostal(),PersonVO.getCiudad(),PersonVO.getNacimiento(),id);
+            String sql = String.format("UPDATE Persona SET Nombre = '%s', Apellido = '%s', Calle = '%s', Codigo_Postal = '%s', Ciudad = '%s', Año_nacimiento = '%s' WHERE Identificador = %d", PersonVO.getNombre(), PersonVO.getApellido(),PersonVO.getCalle(),PersonVO.getCodigoPostal(),PersonVO.getCiudad(),PersonVO.getNacimiento(),PersonVO.getId());
             this.stmt.executeUpdate(sql);
         } catch (Exception var4) {
             throw new ExcepcionPerson("No se ha podido relaizr la edición");

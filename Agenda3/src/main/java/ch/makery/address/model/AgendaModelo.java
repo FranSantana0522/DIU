@@ -1,22 +1,25 @@
 package ch.makery.address.model;
 
-import ch.makery.address.model.repository.impl.PersonRepositoryImpl;
+import ch.makery.address.model.repository.PersonRepository;
 import java.util.ArrayList;
 
 public class AgendaModelo {
-    PersonRepositoryImpl impl;
+    PersonRepository personRepository;
 
     public AgendaModelo(){
 
     }
     public ArrayList<PersonVO> listarPersonas() throws ExcepcionPerson {
-        return impl.ObtenerListaPersona();
+        return personRepository.ObtenerListaPersona();
     }
     public void crearPersonVO(PersonVO personVO) throws ExcepcionPerson {
-        impl.addPerson(personVO);
+        personRepository.addPerson(personVO);
     }
-    public void setImpl(PersonRepositoryImpl impl) {
-        this.impl = impl;
+    public void editarPersonVO(PersonVO personVO) throws ExcepcionPerson {
+        personRepository.editPerson(personVO);
+    }
+    public void setImpl(PersonRepository inter) {
+        this.personRepository = inter;
     }
 }
 

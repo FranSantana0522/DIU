@@ -37,6 +37,7 @@ public class MainApp extends Application {
 
     public MainApp() {
         // Add some sample data
+        personData.addAll(addList());
     }
     public ArrayList<Person> addList(){
         am=new AgendaModelo();
@@ -57,8 +58,7 @@ public class MainApp extends Application {
         listaPerson=cvp.lista(listaPersonVO);
         return listaPerson;
     }
-    public ObservableList<Person> getPersonData() throws ExcepcionPerson{
-        personData.addAll(addList());
+    public ObservableList<Person> getPersonData(){
         return personData;
     }
     @Override

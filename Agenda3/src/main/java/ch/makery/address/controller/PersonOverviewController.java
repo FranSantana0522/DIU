@@ -67,7 +67,6 @@ public class PersonOverviewController {
      */
     public void setMainApp(MainApp mainApp) throws ExcepcionPerson {
         this.mainApp = mainApp;
-
         // Add observable list data to the table
         personTable.setItems(mainApp.getPersonData());
     }
