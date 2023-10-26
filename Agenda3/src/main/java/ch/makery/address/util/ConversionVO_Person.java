@@ -28,4 +28,25 @@ public class ConversionVO_Person {
         }
         return listaPerson;
     }
+    public PersonVO convertirPersonaVO(Person person){
+        PersonVO personVO = new PersonVO();
+        personVO.setId(person.getIdentificador());
+        personVO.setNombre(person.getFirstName());
+        personVO.setApellido(person.getLastName());
+        personVO.setCalle(person.getStreet());
+        personVO.setCodigoPostal(person.getPostalCode());
+        personVO.setCiudad(person.getCity());
+        personVO.setNacimiento(person.getBirthday());
+        return personVO;
+    }
+
+    public ArrayList<PersonVO> listaPerson(ArrayList<Person> listaPerson){
+        ArrayList<PersonVO> listaPersonVO = new ArrayList<PersonVO>();
+        PersonVO personVO = new PersonVO();
+        for(int i=0;i<listaPerson.size();i++){
+            personVO=convertirPersonaVO(listaPerson.get(i));
+            listaPersonVO.add(i,personVO);
+        }
+        return listaPersonVO;
+    }
 }
