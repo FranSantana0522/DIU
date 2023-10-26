@@ -1,5 +1,9 @@
 package ch.makery.address.controller;
 
+import ch.makery.address.model.AgendaModelo;
+import ch.makery.address.model.ExcepcionPerson;
+import ch.makery.address.model.PersonVO;
+import ch.makery.address.util.ConversionVO_Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -27,7 +31,8 @@ public class PersonEditDialogController {
     @FXML
     private TextField birthdayField;
 
-
+    private AgendaModelo am;
+    private ConversionVO_Person cvp;
     private Stage dialogStage;
     private Person person;
     private boolean okClicked = false;
@@ -65,7 +70,15 @@ public class PersonEditDialogController {
         birthdayField.setText(DateUtil.format(person.getBirthday()));
         birthdayField.setPromptText("dd.mm.yyyy");
     }
-
+    public void CrearPersonAPersonVO(Person person) throws ExcepcionPerson {
+        cvp=new ConversionVO_Person();
+        PersonVO personVO=new PersonVO();
+        personVO=cvp.convertirPersonaVO(person);
+        am.crearPersonVO(personVO);
+    }
+    public void setModelo(AgendaModelo am) {
+        this.am=am;
+    }
     /**
      * Returns true if the user clicked OK, false otherwise.
      *
@@ -79,7 +92,7 @@ public class PersonEditDialogController {
      * Called when the user clicks ok.
      */
     @FXML
-    private void handleOk() {
+    private void handleOk() throws ExcepcionPerson {
         if (isInputValid()) {
             person.setFirstName(firstNameField.getText());
             person.setLastName(lastNameField.getText());
@@ -87,7 +100,7 @@ public class PersonEditDialogController {
             person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
             person.setCity(cityField.getText());
             person.setBirthday(DateUtil.parse(birthdayField.getText()));
-
+            CrearPersonAPersonVO(person);
             okClicked = true;
             dialogStage.close();
         }

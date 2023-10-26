@@ -12,6 +12,9 @@ public class AgendaModelo {
     public ArrayList<PersonVO> listarPersonas() throws ExcepcionPerson {
         return impl.ObtenerListaPersona();
     }
+    public void crearPersonVO(PersonVO personVO) throws ExcepcionPerson {
+        impl.addPerson(personVO);
+    }
     public void setImpl(PersonRepositoryImpl impl) {
         this.impl = impl;
     }
