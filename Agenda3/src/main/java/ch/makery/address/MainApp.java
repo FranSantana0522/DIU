@@ -49,9 +49,9 @@ public class MainApp extends Application {
             listaPersonVO = am.listarPersonas();
         } catch (ExcepcionPerson e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Error");
-            alert.setTitle("Error");
-            alert.setContentText("Error al listar las personas.");
+            alert.setHeaderText("Error al listar las personas.");
+            alert.setTitle("Error con la base de datos");
+            alert.setContentText("No se puede conectar con la base de datos");
             alert.showAndWait();
         }
         listaPerson=cvp.lista(listaPersonVO);
