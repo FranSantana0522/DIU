@@ -4,8 +4,11 @@ import ch.makery.address.model.AgendaModelo;
 import ch.makery.address.model.ExcepcionPerson;
 import ch.makery.address.model.PersonVO;
 import ch.makery.address.util.ConversionVO_Person;
+import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ch.makery.address.model.Person;
@@ -31,12 +34,36 @@ public class PersonEditDialogController {
     private TextField cityField;
     @FXML
     private TextField birthdayField;
+    private IntegerProperty numPerson;
+    @FXML
+    private ProgressBar barrita;
+    @FXML
+    private Label progreso;
 
     private AgendaModelo am;
     private ConversionVO_Person cvp;
     private Stage dialogStage;
     private Person person;
     private boolean okClicked = false;
+
+    public PersonEditDialogController() {
+    }
+
+    public IntegerProperty getNumPerson() {
+        return numPerson;
+    }
+    public IntegerProperty numPersonProperty() {
+        return numPerson;
+    }
+    public void setNumPerson(IntegerProperty numPersonI) {
+        this.numPerson=numPersonI;
+    }
+    public void setProgreso(IntegerProperty numPerson){
+        this.progreso.setText(numPerson.getValue()+"/50");
+    }
+    public void setBarrita(IntegerProperty numPerson){
+        this.barrita.setProgress(numPerson.doubleValue()/50);
+    }
 
     /**
      * Initializes the controller class. This method is automatically called
@@ -69,6 +96,8 @@ public class PersonEditDialogController {
         cityField.setText(person.getCity());
         birthdayField.setText(DateUtil.format(person.getBirthday()));
         birthdayField.setPromptText("dd.mm.yyyy");
+        setBarrita(getNumPerson());
+        setProgreso(getNumPerson());
     }
     public void CrearPersonAPersonVO(Person person) throws ExcepcionPerson {
         cvp=new ConversionVO_Person();

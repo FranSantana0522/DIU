@@ -26,28 +26,10 @@ public class RootLayoutController {
         this.mainApp = mainApp;
     }
 
-    /**
-     * Opens an about dialog.
-     */
-    @FXML
-    private void handleAbout() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("AddressApp");
-        alert.setHeaderText("About");
-        alert.setContentText("Author: Marco Jakob\nWebsite: http://code.makery.ch");
-        alert.showAndWait();
-    }
+
 
     @FXML
     private void handleShowBirthdayStatistics() {
         mainApp.showBirthdayStatistics();
-    }
-
-    /**
-     * Closes the application.
-     */
-    @FXML
-    private void handleExit() {
-        System.exit(0);
     }
 }

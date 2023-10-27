@@ -11,6 +11,8 @@ import ch.makery.address.model.PersonVO;
 import ch.makery.address.model.repository.impl.PersonRepositoryImpl;
 import ch.makery.address.util.ConversionVO_Person;
 import javafx.application.Application;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +36,7 @@ public class MainApp extends Application {
     private PersonRepositoryImpl impl;
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
+    IntegerProperty numPerson=(IntegerProperty) new SimpleIntegerProperty();
 
     public MainApp() {
         // Add some sample data
@@ -129,7 +132,7 @@ public class MainApp extends Application {
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit Person");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initModality(Modality.NONE);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -137,9 +140,12 @@ public class MainApp extends Application {
             // Set the person into the controller.
             PersonEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
+            numPerson.setValue(personData.size());
+            controller.setNumPerson(numPerson);
             controller.setModelo(am);
             controller.setId(person.getIdentificador());
             controller.setPerson(person);
+
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

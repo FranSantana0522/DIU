@@ -40,8 +40,10 @@
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background">
                <children>
-                  <Button layoutX="510.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
-                  <Button layoutX="416.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleOk" text="Confirmar" />
+                  <Button layoutX="482.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+                  <Button layoutX="350.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleOk" text="Confirmar" />
+                  <ProgressBar fx:id="barrita" layoutX="14.0" layoutY="34.0" prefHeight="20.0" prefWidth="283.0" progress="0.0" />
+                  <Label fx:id="progreso" layoutX="300.0" layoutY="36.0" text="0/50" />
                </children></AnchorPane>
         </items>
       </SplitPane>
