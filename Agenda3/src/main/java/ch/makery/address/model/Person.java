@@ -43,7 +43,6 @@ public class Person {
      * @param lastName
      */
     public Person(String firstName, String lastName) {
-        this.Identificador=0;
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
 

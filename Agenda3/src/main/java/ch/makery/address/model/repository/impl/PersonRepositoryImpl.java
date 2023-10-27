@@ -32,13 +32,14 @@ public class PersonRepositoryImpl implements PersonRepository {
             ResultSet rs = this.stmt.executeQuery(this.sentencia);
 
             while(rs.next()) {
+                Integer id=rs.getInt("Identificador");
                 String n = rs.getString("Nombre");
                 String a = rs.getString("Apellido");
                 String c = rs.getString("Calle");
                 Integer cp = rs.getInt("Codigo_Postal");
                 String ciu = rs.getString("Ciudad");
                 LocalDate f= rs.getDate("Año_nacimiento").toLocalDate();
-                this.persona = new PersonVO(n, a,c,cp,ciu,f);
+                this.persona = new PersonVO(id,n,a,c,cp,ciu,f);
                 this.personas.add(this.persona);
             }
 
@@ -93,12 +94,22 @@ public class PersonRepositoryImpl implements PersonRepository {
             Connection conn = this.conexion.conectarBD();
             Statement comando = conn.createStatement();
 
-            for(ResultSet registro = comando.executeQuery("SELECT Identificador FROM Persona ORDER BY Identificador DESC LIMIT 1"); registro.next(); lastPersonId = registro.getInt("Identificador")) {
+            ResultSet resultSet =comando.executeQuery("SELECT AUTO_INCREMENT "+
+                    "FROM information_schema.TABLES "+
+                    "WHERE TABLE_SCHEMA = 'Agenda' "+
+                    "AND TABLE_NAME = 'Persona'");
+
+            {
+                if(resultSet.next()){
+                    lastPersonId=resultSet.getInt("AUTO_INCREMENT")-1;
+                }
+                System.out.println(lastPersonId);
+                return lastPersonId;
             }
 
-            return lastPersonId;
-        } catch (SQLException var5) {
-            throw new ExcepcionPerson("No se ha podido realizar la busqueda del ID");
+        } catch (SQLException e) {
+            System.out.println(e);
+            throw new ExcepcionPerson("No se ha podido realizar la búsqueda del ID");
         }
     }
 }

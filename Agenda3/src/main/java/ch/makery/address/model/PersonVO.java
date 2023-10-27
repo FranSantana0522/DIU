@@ -11,7 +11,8 @@ public class PersonVO {
         String ciudad;
         LocalDate nacimiento;
 
-    public PersonVO( String nombre, String apellido, String calle, Integer codigoPostal, String ciudad, LocalDate nacimiento) {
+    public PersonVO(Integer id, String nombre, String apellido, String calle, Integer codigoPostal, String ciudad, LocalDate nacimiento) {
+        this.id=id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.calle = calle;

@@ -18,6 +18,12 @@ public class AgendaModelo {
     public void editarPersonVO(PersonVO personVO) throws ExcepcionPerson {
         personRepository.editPerson(personVO);
     }
+    public void deletePersonVO(PersonVO personVO) throws ExcepcionPerson {
+        personRepository.deletePerson(personVO.getId());
+    }
+    public int lastId() throws ExcepcionPerson {
+        return personRepository.lastId();
+    }
     public void setImpl(PersonRepository inter) {
         this.personRepository = inter;
     }

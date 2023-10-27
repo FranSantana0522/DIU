@@ -1,6 +1,8 @@
 package ch.makery.address.controller;
 
+import ch.makery.address.model.AgendaModelo;
 import ch.makery.address.model.ExcepcionPerson;
+import ch.makery.address.util.ConversionVO_Person;
 import ch.makery.address.util.DateUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import ch.makery.address.MainApp;
 import ch.makery.address.model.Person;
+
+import java.io.IOException;
 
 public class PersonOverviewController {
     @FXML
@@ -34,6 +38,8 @@ public class PersonOverviewController {
 
     // Reference to the main application.
     private MainApp mainApp;
+    private AgendaModelo am;
+    private ConversionVO_Person cvp;
 
     /**
      * The constructor.
@@ -91,10 +97,23 @@ public class PersonOverviewController {
             birthdayLabel.setText("");
         }
     }
+    public void setModelo(AgendaModelo am) {
+        this.am=am;
+    }
     @FXML
-    private void handleDeletePerson() {
+    private void handleDeletePerson(){
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
+            cvp=new ConversionVO_Person();
+            try {
+                am.deletePersonVO(cvp.convertirPersonaVO(personTable.getItems().get(selectedIndex)));
+            }catch (ExcepcionPerson e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Error al eliminar la persona");
+                alert.setTitle("Error con la base de datos");
+                alert.setContentText("No se puede conectar con la base de datos para eliminar la persona");
+                alert.showAndWait();
+            }
             personTable.getItems().remove(selectedIndex);
         } else {
             // Nothing selected.

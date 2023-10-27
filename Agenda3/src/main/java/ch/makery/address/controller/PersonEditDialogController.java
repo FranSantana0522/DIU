@@ -17,6 +17,7 @@ import ch.makery.address.util.DateUtil;
  * @author Marco Jakob
  */
 public class PersonEditDialogController {
+    private Integer id;
 
     @FXML
     private TextField firstNameField;
@@ -61,7 +62,6 @@ public class PersonEditDialogController {
      */
     public void setPerson(Person person) {
         this.person = person;
-
         firstNameField.setText(person.getFirstName());
         lastNameField.setText(person.getLastName());
         streetField.setText(person.getStreet());
@@ -100,14 +100,19 @@ public class PersonEditDialogController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
+            boolean crear=false;
+            if(id==null){
+                crear=true;
+            }
             person.setFirstName(firstNameField.getText());
             person.setLastName(lastNameField.getText());
             person.setStreet(streetField.getText());
             person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
             person.setCity(cityField.getText());
             person.setBirthday(DateUtil.parse(birthdayField.getText()));
-            if(person.getIdentificador()==null){
+            if(crear){
                 try{
+                    person.setIdentificador(am.lastId()+1);
                     CrearPersonAPersonVO(person);
                     okClicked = true;
                 }catch(ExcepcionPerson e){
@@ -195,5 +200,13 @@ public class PersonEditDialogController {
                     alerta.showAndWait();
             return false;
         }
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

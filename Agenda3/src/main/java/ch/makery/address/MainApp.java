@@ -111,6 +111,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             PersonOverviewController controller = loader.getController();
+            controller.setModelo(am);
             controller.setMainApp(this);
 
         } catch (IOException e) {
@@ -137,6 +138,7 @@ public class MainApp extends Application {
             PersonEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setModelo(am);
+            controller.setId(person.getIdentificador());
             controller.setPerson(person);
 
             // Show the dialog and wait until the user closes it
