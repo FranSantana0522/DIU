@@ -12,9 +12,8 @@ public class AgendaModelo {
 
     DoubleProperty progreso=new SimpleDoubleProperty(0);
 
-    public DoubleProperty setProgreso(Integer tamaño){
-        this.progreso.set(tamaño.doubleValue());
-        return progreso;
+    public  void setProgreso(DoubleProperty progreso){
+        this.progreso=progreso;
     }
     public AgendaModelo(){
 

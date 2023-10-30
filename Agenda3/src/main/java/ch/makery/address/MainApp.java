@@ -142,7 +142,7 @@ public class MainApp extends Application {
             controller.setDialogStage(dialogStage);
             numPerson.setValue(personData.size());
             controller.setPerson(person);
-            controller.setBarrita(am.setProgreso(numPerson.intValue()));
+            controller.setBarrita(am.setProgreso(numPerson));
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
 
