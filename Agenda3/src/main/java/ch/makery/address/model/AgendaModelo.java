@@ -15,6 +15,15 @@ public class AgendaModelo {
     public  void setProgreso(DoubleProperty progreso){
         this.progreso=progreso;
     }
+
+    public double getProgreso() {
+        return progreso.get();
+    }
+
+    public DoubleProperty progresoProperty() {
+        return progreso;
+    }
+
     public AgendaModelo(){
 
     }

@@ -1,5 +1,6 @@
 package ch.makery.address.controller;
 
+import ch.makery.address.model.AgendaModelo;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -39,20 +40,23 @@ public class PersonEditDialogController {
     private Label progreso;
     private Stage dialogStage;
     private Person person;
+    private AgendaModelo am;
     private boolean okClicked = false;
 
 
 
     public PersonEditDialogController() {
     }
-    public void setProgreso(DoubleProperty numPerson){
-        IntegerProperty a=new SimpleIntegerProperty();
-        a.set(numPerson.intValue());
-        this.progreso.setText(a.getValue()+"/50");
+
+    public void setAm(AgendaModelo am) {
+        this.am = am;
+    }
+
+    public void setProgreso(IntegerProperty numPerson){
+        this.progreso.setText(numPerson.getValue()+"/50");
     }
     public void setBarrita(DoubleProperty numPerson){
         this.barrita.progressProperty().bind(numPerson.divide(50));
-        setProgreso(numPerson);
     }
 
     /**

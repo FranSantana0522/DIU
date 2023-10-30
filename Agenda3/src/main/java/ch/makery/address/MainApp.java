@@ -11,7 +11,9 @@ import ch.makery.address.model.PersonVO;
 import ch.makery.address.model.repository.impl.PersonRepositoryImpl;
 import ch.makery.address.util.ConversionVO_Person;
 import javafx.application.Application;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,8 +38,7 @@ public class MainApp extends Application {
     private PersonRepositoryImpl impl;
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
-    IntegerProperty numPerson=(IntegerProperty) new SimpleIntegerProperty();
-
+    Double numPerson;
     public MainApp() {
         // Add some sample data
         personData.addAll(addList());
@@ -140,10 +141,15 @@ public class MainApp extends Application {
             // Set the person into the controller.
             PersonEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            numPerson.setValue(personData.size());
+            DoubleProperty n=new SimpleDoubleProperty(numPerson);
             controller.setPerson(person);
-            controller.setBarrita(am.setProgreso(numPerson));
+            numPerson= (double) personData.size();
+            controller.setAm(am);
+            controller.setBarrita(n);
+            IntegerProperty n2=new SimpleIntegerProperty(numPerson.intValue());
+            controller.setProgreso(n2);
             // Show the dialog and wait until the user closes it
+            //Probar en clase poner solo show en vez de showandwait
             dialogStage.showAndWait();
 
             return controller.isOkClicked();
