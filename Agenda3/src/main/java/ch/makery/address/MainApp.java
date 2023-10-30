@@ -141,12 +141,8 @@ public class MainApp extends Application {
             PersonEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             numPerson.setValue(personData.size());
-            controller.setNumPerson(numPerson);
-            controller.setModelo(am);
-            controller.setId(person.getIdentificador());
             controller.setPerson(person);
-
-
+            controller.setBarrita(am.setProgreso(numPerson.intValue()));
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
 

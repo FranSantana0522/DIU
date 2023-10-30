@@ -1,10 +1,9 @@
 package ch.makery.address.controller;
 
-import ch.makery.address.model.AgendaModelo;
-import ch.makery.address.model.ExcepcionPerson;
-import ch.makery.address.model.PersonVO;
-import ch.makery.address.util.ConversionVO_Person;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -20,7 +19,7 @@ import ch.makery.address.util.DateUtil;
  * @author Marco Jakob
  */
 public class PersonEditDialogController {
-    private Integer id;
+
 
     @FXML
     private TextField firstNameField;
@@ -34,35 +33,26 @@ public class PersonEditDialogController {
     private TextField cityField;
     @FXML
     private TextField birthdayField;
-    private IntegerProperty numPerson;
     @FXML
     private ProgressBar barrita;
     @FXML
     private Label progreso;
-
-    private AgendaModelo am;
-    private ConversionVO_Person cvp;
     private Stage dialogStage;
     private Person person;
     private boolean okClicked = false;
 
+
+
     public PersonEditDialogController() {
     }
-
-    public IntegerProperty getNumPerson() {
-        return numPerson;
+    public void setProgreso(DoubleProperty numPerson){
+        IntegerProperty a=new SimpleIntegerProperty();
+        a.set(numPerson.intValue());
+        this.progreso.setText(a.getValue()+"/50");
     }
-    public IntegerProperty numPersonProperty() {
-        return numPerson;
-    }
-    public void setNumPerson(IntegerProperty numPersonI) {
-        this.numPerson=numPersonI;
-    }
-    public void setProgreso(IntegerProperty numPerson){
-        this.progreso.setText(numPerson.getValue()+"/50");
-    }
-    public void setBarrita(IntegerProperty numPerson){
-        this.barrita.setProgress(numPerson.doubleValue()/50);
+    public void setBarrita(DoubleProperty numPerson){
+        this.barrita.progressProperty().bind(numPerson.divide(50));
+        setProgreso(numPerson);
     }
 
     /**
@@ -96,24 +86,8 @@ public class PersonEditDialogController {
         cityField.setText(person.getCity());
         birthdayField.setText(DateUtil.format(person.getBirthday()));
         birthdayField.setPromptText("dd.mm.yyyy");
-        setBarrita(getNumPerson());
-        setProgreso(getNumPerson());
     }
-    public void CrearPersonAPersonVO(Person person) throws ExcepcionPerson {
-        cvp=new ConversionVO_Person();
-        PersonVO personVO=new PersonVO();
-        personVO=cvp.convertirPersonaVO(person);
-        am.crearPersonVO(personVO);
-    }
-    public void editarPersonAPersonVO(Person person) throws ExcepcionPerson {
-        cvp=new ConversionVO_Person();
-        PersonVO personVO=new PersonVO();
-        personVO=cvp.convertirPersonaVO(person);
-        am.editarPersonVO(personVO);
-    }
-    public void setModelo(AgendaModelo am) {
-        this.am=am;
-    }
+
     /**
      * Returns true if the user clicked OK, false otherwise.
      *
@@ -129,42 +103,13 @@ public class PersonEditDialogController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            boolean crear=false;
-            if(id==null){
-                crear=true;
-            }
             person.setFirstName(firstNameField.getText());
             person.setLastName(lastNameField.getText());
             person.setStreet(streetField.getText());
             person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
             person.setCity(cityField.getText());
             person.setBirthday(DateUtil.parse(birthdayField.getText()));
-            if(crear){
-                try{
-                    person.setIdentificador(am.lastId()+1);
-                    CrearPersonAPersonVO(person);
-                    okClicked = true;
-                }catch(ExcepcionPerson e){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("Error al añadir la persona");
-                    alert.setTitle("Error con la base de datos");
-                    alert.setContentText("No se puede conectar con la base de datos para añadir la persona");
-                    alert.showAndWait();
-                    handleCancel();
-                }
-            }else{
-                try{
-                    editarPersonAPersonVO(person);
-                    okClicked = true;
-                }catch(ExcepcionPerson e){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("Error al editar la persona");
-                    alert.setTitle("Error con la base de datos");
-                    alert.setContentText("No se puede conectar con la base de datos para editar la persona");
-                    alert.showAndWait();
-                    handleCancel();
-                }
-            }
+            okClicked=true;
             dialogStage.close();
         }
     }
@@ -231,11 +176,4 @@ public class PersonEditDialogController {
         }
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

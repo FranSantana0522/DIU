@@ -2,6 +2,7 @@ package ch.makery.address.controller;
 
 import ch.makery.address.model.AgendaModelo;
 import ch.makery.address.model.ExcepcionPerson;
+import ch.makery.address.model.PersonVO;
 import ch.makery.address.util.ConversionVO_Person;
 import ch.makery.address.util.DateUtil;
 import javafx.event.ActionEvent;
@@ -22,7 +23,7 @@ public class PersonOverviewController {
     private TableColumn<Person, String> firstNameColumn;
     @FXML
     private TableColumn<Person, String> lastNameColumn;
-
+    private Integer id;
     @FXML
     private Label firstNameLabel;
     @FXML
@@ -97,6 +98,18 @@ public class PersonOverviewController {
             birthdayLabel.setText("");
         }
     }
+    public void CrearPersonAPersonVO(Person person) throws ExcepcionPerson {
+        cvp=new ConversionVO_Person();
+        PersonVO personVO=new PersonVO();
+        personVO=cvp.convertirPersonaVO(person);
+        am.crearPersonVO(personVO);
+    }
+    public void editarPersonAPersonVO(Person person) throws ExcepcionPerson {
+        cvp=new ConversionVO_Person();
+        PersonVO personVO=new PersonVO();
+        personVO=cvp.convertirPersonaVO(person);
+        am.editarPersonVO(personVO);
+    }
     public void setModelo(AgendaModelo am) {
         this.am=am;
     }
@@ -133,7 +146,17 @@ public class PersonOverviewController {
         Person tempPerson = new Person();
         boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
         if (okClicked) {
-            mainApp.getPersonData().add(tempPerson);
+            try{
+                tempPerson.setIdentificador(am.lastId()+1);
+                CrearPersonAPersonVO(tempPerson);
+                mainApp.getPersonData().add(tempPerson);
+            }catch(ExcepcionPerson e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Error al añadir la persona");
+                alert.setTitle("Error con la base de datos");
+                alert.setContentText("No se puede conectar con la base de datos para añadir la persona");
+                alert.showAndWait();
+            }
         }
     }
 
@@ -146,8 +169,18 @@ public class PersonOverviewController {
         Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
             boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
+
             if (okClicked) {
-                showPersonDetails(selectedPerson);
+                try{
+                    editarPersonAPersonVO(selectedPerson);
+                    showPersonDetails(selectedPerson);
+                }catch(ExcepcionPerson e){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Error al editar la persona");
+                    alert.setTitle("Error con la base de datos");
+                    alert.setContentText("No se puede conectar con la base de datos para editar la persona");
+                    alert.showAndWait();
+                }
             }
 
         } else {
@@ -158,5 +191,12 @@ public class PersonOverviewController {
                     alerta.setContentText("Please select a person in the table.");
                     alerta.showAndWait();
         }
+    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
