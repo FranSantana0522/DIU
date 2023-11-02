@@ -78,6 +78,10 @@ public class PersonOverviewController {
         personTable.setItems(mainApp.getPersonData());
     }
 
+    /**
+     * Muestra el detalle de las personas
+     * @param person
+     */
     private void showPersonDetails(Person person) {
         if (person != null) {
             // Fill the labels with info from the person object.
@@ -98,21 +102,43 @@ public class PersonOverviewController {
             birthdayLabel.setText("");
         }
     }
+
+    /**
+     * Metodo usado para transformar de Person a PersonVO a traves del conversor y crearla en la base de datos
+     * @param person
+     * @throws ExcepcionPerson
+     */
     public void CrearPersonAPersonVO(Person person) throws ExcepcionPerson {
         cvp=new ConversionVO_Person();
         PersonVO personVO=new PersonVO();
         personVO=cvp.convertirPersonaVO(person);
         am.crearPersonVO(personVO);
     }
+
+    /**
+     * Metodo usado para editar la persona de Person a PersonVO a traves del conversor y editarla en la base de
+     * datos
+     * @param person
+     * @throws ExcepcionPerson
+     */
     public void editarPersonAPersonVO(Person person) throws ExcepcionPerson {
         cvp=new ConversionVO_Person();
         PersonVO personVO=new PersonVO();
         personVO=cvp.convertirPersonaVO(person);
         am.editarPersonVO(personVO);
     }
+
+    /**
+     * Instanciamos la agendaModelo
+     * @param am
+     */
     public void setModelo(AgendaModelo am) {
         this.am=am;
     }
+
+    /**
+     * Cuando se pulsa el boton borrar se ejecuta este metodo que borra en la vista y en la base de datos
+     */
     @FXML
     private void handleDeletePerson(){
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
@@ -137,9 +163,11 @@ public class PersonOverviewController {
                     alerta.showAndWait();
         }
     }
+
     /**
-     * Called when the user clicks the new button. Opens a dialog to edit
-     * details for a new person.
+     * Cuando se pulsa new se ejecuta este metodo que abre el personEditDialog y crea la persona en la vista
+     * y en la base de datos
+     * @throws ExcepcionPerson
      */
     @FXML
     private void handleNewPerson() throws ExcepcionPerson {
@@ -162,8 +190,7 @@ public class PersonOverviewController {
     }
 
     /**
-     * Called when the user clicks the edit button. Opens a dialog to edit
-     * details for the selected person.
+     * Cuando se pulsa en edit se abre el personEditDialog y se edita la persona en la vista y en la base de datos
      */
     @FXML
     private void handleEditPerson() {
