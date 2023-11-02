@@ -2,7 +2,6 @@ package ch.makery.address.model;
 
 import ch.makery.address.model.repository.PersonRepository;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 import java.util.ArrayList;
@@ -12,8 +11,9 @@ public class AgendaModelo {
 
     DoubleProperty progreso=new SimpleDoubleProperty(0);
 
-    public  void setProgreso(DoubleProperty progreso){
+    public DoubleProperty setProgreso(DoubleProperty progreso){
         this.progreso=progreso;
+        return progreso;
     }
 
     public double getProgreso() {

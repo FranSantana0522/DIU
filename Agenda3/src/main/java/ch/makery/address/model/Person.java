@@ -48,7 +48,7 @@ public class Person {
 
         // Some initial dummy data, just for convenient testing.
         this.street = new SimpleStringProperty("some street");
-        this.postalCode = new SimpleIntegerProperty(1234);
+        this.postalCode = new SimpleIntegerProperty(12345);
         this.city = new SimpleStringProperty("some city");
         this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
     }

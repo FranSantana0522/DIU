@@ -158,6 +158,7 @@ public class PersonOverviewController {
                 alert.showAndWait();
             }
         }
+
     }
 
     /**
@@ -169,7 +170,6 @@ public class PersonOverviewController {
         Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
             boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
-
             if (okClicked) {
                 try{
                     editarPersonAPersonVO(selectedPerson);

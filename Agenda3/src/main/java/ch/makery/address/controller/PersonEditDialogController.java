@@ -144,7 +144,8 @@ public class PersonEditDialogController {
             errorMessage += "No valid street!\n";
         }
 
-        if (postalCodeField.getText() == null || postalCodeField.getText().length() == 0) {
+        if (postalCodeField.getText() == null || postalCodeField.getText().length() == 0 ||
+        postalCodeField.getText().length()!=5) {
             errorMessage += "No valid postal code!\n";
         } else {
             // try to parse the postal code into an int.
