@@ -23,6 +23,11 @@ public class PersonRepositoryImpl implements PersonRepository {
     public PersonRepositoryImpl() {
     }
 
+    /**
+     * Obtiene la lista de personas de la base de datos
+     * @return lista de personas
+     * @throws ExcepcionPerson
+     */
     public ArrayList<PersonVO> ObtenerListaPersona() throws ExcepcionPerson {
         try {
             Connection conn = this.conexion.conectarBD();
@@ -50,6 +55,11 @@ public class PersonRepositoryImpl implements PersonRepository {
         }
     }
 
+    /**
+     * Añade una nueva persona a la base de datos.s
+     * @param m Persona a agregar
+     * @throws ExcepcionPerson
+     */
     public void addPerson(PersonVO m) throws ExcepcionPerson {
         try {
             Connection conn = this.conexion.conectarBD();
@@ -63,6 +73,11 @@ public class PersonRepositoryImpl implements PersonRepository {
         }
     }
 
+    /**
+     * Borra la persona de la base de datos.
+     * @param idPersona
+     * @throws ExcepcionPerson
+     */
     public void deletePerson(Integer idPersona) throws ExcepcionPerson {
         try {
             Connection conn = this.conexion.conectarBD();
@@ -76,6 +91,11 @@ public class PersonRepositoryImpl implements PersonRepository {
         }
     }
 
+    /**
+     * Edita la persona de la base de datos
+     * @param PersonVO
+     * @throws ExcepcionPerson
+     */
     public void editPerson(PersonVO PersonVO) throws ExcepcionPerson {
         try {
             Connection conn = this.conexion.conectarBD();
@@ -87,6 +107,11 @@ public class PersonRepositoryImpl implements PersonRepository {
         }
     }
 
+    /**
+     * Recoge el ultimo id de la base de datos
+     * @return
+     * @throws ExcepcionPerson
+     */
     public int lastId() throws ExcepcionPerson {
         int lastPersonId = 0;
 
