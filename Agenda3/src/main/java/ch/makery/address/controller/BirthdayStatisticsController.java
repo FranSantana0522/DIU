@@ -44,7 +44,7 @@ public class BirthdayStatisticsController {
     }
 
     /**
-     * Sets the persons to show the statistics for.
+     * Instancia las personas para mostrar las estadisticas
      *
      * @param persons
      */
