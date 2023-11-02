@@ -7,9 +7,16 @@ public class ExcepcionPerson extends Exception {
     private Alert mensajeA;
     private String mensaje;
 
+    /**
+     * Constructor vacio
+     */
     public ExcepcionPerson() {
     }
 
+    /**
+     * Constructor que recibe un mensaje
+     * @param ms
+     */
     public ExcepcionPerson(String ms) {
         this.mensaje = ms;
     }
