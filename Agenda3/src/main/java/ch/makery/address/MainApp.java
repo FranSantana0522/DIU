@@ -39,10 +39,20 @@ public class MainApp extends Application {
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
     Double numPerson;
+
+    /**
+     * Ejecuto el metodo addlist para que agrege la lista de personas de la base de datos
+     */
     public MainApp() {
         // Add some sample data
         personData.addAll(addList());
     }
+
+    /**
+     * Se obtiene la lista de PersonVO de la base de datos y la transformamos en una lista de Person mediante el
+     * conversor.
+     * @return listaPerson -Devuelve una lista de Person
+     */
     public ArrayList<Person> addList(){
         am=new AgendaModelo();
         cvp=new ConversionVO_Person();
@@ -62,9 +72,20 @@ public class MainApp extends Application {
         listaPerson=cvp.lista(listaPersonVO);
         return listaPerson;
     }
+
+    /**
+     *
+     * @return personData -Devuelve la lista de Person.
+     */
     public ObservableList<Person> getPersonData(){
         return personData;
     }
+
+    /**
+     * El metodo start es lo primero que se ejecuta despues del mainApp y iniciamos en ella dos metodos,
+     * el initRootLayout y el showPersonOverview.
+     * @param primaryStage La vista principal de la aplicacion.
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -78,7 +99,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Initializes the root layout.
+     * Inicia el RootLayout.fxml y lo carga en el escenario principal, tambien le carga los controladores.
      */
     public void initRootLayout() {
         try {
@@ -101,7 +122,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Shows the person overview inside the root layout.
+     * Carga el PersonOverview.fxml dentro del rootLayout y tambien su controlador.
      */
     public void showPersonOverview() {
         try {
@@ -124,6 +145,13 @@ public class MainApp extends Application {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Se carga un modal que es el PersonEditDialog.fxml y su controlador tambien interaccionamos con los properties
+     * para la barra de progreso
+     * @param person Se le pasa un Person como parametro al metodo ya que es con el que se va a trabajar
+     * @return Devuelve un booleano isOkClikled.
+     */
     public boolean showPersonEditDialog(Person person) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -159,7 +187,7 @@ public class MainApp extends Application {
         }
     }
     /**
-     * Opens a dialog to show birthday statistics.
+     * Abre un modal de BirthdayStatistics.fxml y su controlador
      */
     public void showBirthdayStatistics() {
         try {
@@ -192,6 +220,9 @@ public class MainApp extends Application {
         return primaryStage;
     }
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
 //        try {
 //            PersonRepositoryImpl pri=new PersonRepositoryImpl();
