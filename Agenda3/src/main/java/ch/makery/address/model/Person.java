@@ -37,8 +37,7 @@ public class Person {
     }
 
     /**
-     * Constructor with some initial data.
-     *
+     * Contructor solo escribes el nombre y apellido
      * @param firstName
      * @param lastName
      */
