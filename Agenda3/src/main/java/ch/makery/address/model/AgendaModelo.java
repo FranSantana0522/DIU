@@ -11,6 +11,11 @@ public class AgendaModelo {
 
     DoubleProperty progreso=new SimpleDoubleProperty(0);
 
+    /**
+     * Asigno el progreso de la progressBar con los properties
+     * @param progreso tamaño de la tabla
+     * @return progreso
+     */
     public DoubleProperty setProgreso(DoubleProperty progreso){
         this.progreso=progreso;
         return progreso;
@@ -24,24 +29,62 @@ public class AgendaModelo {
         return progreso;
     }
 
+    /**
+     * Constructor vacio
+     */
     public AgendaModelo(){
 
     }
+
+    /**
+     * Lista las personas de la base de datos a partir de la interfaz
+     * @return lista de persona de la base de datos
+     * @throws ExcepcionPerson
+     */
     public ArrayList<PersonVO> listarPersonas() throws ExcepcionPerson {
         return personRepository.ObtenerListaPersona();
     }
+
+    /**
+     * Crea la persona en la base de datos a partir de la interfaz
+     * @param personVO
+     * @throws ExcepcionPerson
+     */
     public void crearPersonVO(PersonVO personVO) throws ExcepcionPerson {
         personRepository.addPerson(personVO);
     }
+
+    /**
+     * Edita la persona en la base de daros a partir de la interfaz.
+     * @param personVO
+     * @throws ExcepcionPerson
+     */
     public void editarPersonVO(PersonVO personVO) throws ExcepcionPerson {
         personRepository.editPerson(personVO);
     }
+
+    /**
+     * Borra la persona de la base de datos a partir de la interfaz
+     * @param personVO
+     * @throws ExcepcionPerson
+     */
     public void deletePersonVO(PersonVO personVO) throws ExcepcionPerson {
         personRepository.deletePerson(personVO.getId());
     }
+
+    /**
+     * Obtiene el id de la ultima persona de la base de datos.
+     * @return id
+     * @throws ExcepcionPerson
+     */
     public int lastId() throws ExcepcionPerson {
         return personRepository.lastId();
     }
+
+    /**
+     * Instanciamos el interfaz
+     * @param inter
+     */
     public void setImpl(PersonRepository inter) {
         this.personRepository = inter;
     }
