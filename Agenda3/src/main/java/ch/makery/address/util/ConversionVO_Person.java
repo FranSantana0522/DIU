@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 public class ConversionVO_Person {
 
+    /**
+     * ConvertirPersona se le pasa un personVO y lo transforma a Person
+     * @param personVO
+     * @return Person
+     */
     public Person convertirPersona(PersonVO personVO){
         Person person = new Person();
         person.setIdentificador(personVO.getId());
@@ -19,6 +24,11 @@ public class ConversionVO_Person {
         return person;
     }
 
+    /**
+     * Lista se le pasa un arrayList de PersonVO y devuelve un arrayList de Person.
+     * @param listaPersonVO
+     * @return listaPerson -Lista de Person
+     */
     public ArrayList<Person> lista(ArrayList<PersonVO> listaPersonVO){
         ArrayList<Person> listaPerson = new ArrayList<Person>();
         Person person = new Person();
@@ -28,6 +38,12 @@ public class ConversionVO_Person {
         }
         return listaPerson;
     }
+
+    /**
+     * Convierte una Person a PersonVO
+     * @param person
+     * @return PersonVO
+     */
     public PersonVO convertirPersonaVO(Person person){
         PersonVO personVO = new PersonVO();
         personVO.setId(person.getIdentificador());
@@ -40,6 +56,11 @@ public class ConversionVO_Person {
         return personVO;
     }
 
+    /**
+     * Convierte una lista Person a lista de PersonVO.
+     * @param listaPerson
+     * @return listaPersonVO
+     */
     public ArrayList<PersonVO> listaPerson(ArrayList<Person> listaPerson){
         ArrayList<PersonVO> listaPersonVO = new ArrayList<PersonVO>();
         PersonVO personVO = new PersonVO();
