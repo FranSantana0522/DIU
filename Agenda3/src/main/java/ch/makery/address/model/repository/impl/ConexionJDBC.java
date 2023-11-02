@@ -8,6 +8,11 @@ public class ConexionJDBC {
     public ConexionJDBC() {
 }
 
+    /**
+     * Conecta con la base de datos
+     * @return conn -Conexion con la base de datos
+     * @throws SQLException
+     */
         public Connection conectarBD() throws SQLException {
             try {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/Agenda?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
@@ -31,7 +36,11 @@ public class ConexionJDBC {
             }
         }
 
-        public void desconectarBD(Connection conn) {
+    /**
+     * Desconecta la base de datos
+     * @param conn
+     */
+    public void desconectarBD(Connection conn) {
             try {
                 conn.close();
             } catch (SQLException var3) {
