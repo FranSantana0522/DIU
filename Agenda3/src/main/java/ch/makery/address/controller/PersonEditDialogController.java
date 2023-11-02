@@ -48,13 +48,26 @@ public class PersonEditDialogController {
     public PersonEditDialogController() {
     }
 
+    /**
+     * Instanciamos la agendaModelo
+     * @param am
+     */
     public void setAm(AgendaModelo am) {
         this.am = am;
     }
 
+    /**
+     * Asignamos el numero de persona de la tabla para el label
+     * @param numPerson
+     */
     public void setProgreso(IntegerProperty numPerson){
         this.progreso.setText(numPerson.getValue()+"/50");
     }
+
+    /**
+     * Asignamos el numero de personas de la tabla para la barra de progreso
+     * @param numPerson
+     */
     public void setBarrita(DoubleProperty numPerson){
         this.barrita.progressProperty().bind(numPerson.divide(50));
     }
@@ -77,8 +90,7 @@ public class PersonEditDialogController {
     }
 
     /**
-     * Sets the person to be edited in the dialog.
-     *
+     * Crea la persona y le añade los campos
      * @param person
      */
     public void setPerson(Person person) {
