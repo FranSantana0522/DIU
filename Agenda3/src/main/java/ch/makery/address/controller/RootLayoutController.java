@@ -22,12 +22,18 @@ public class RootLayoutController {
     // Reference to the main application
     private MainApp mainApp;
 
+    /**
+     * Instancia el mainApp en la clase
+     * @param mainApp
+     */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
 
-
+    /**
+     * Se ejecuta al pulsar el boton show statictics.
+     */
     @FXML
     private void handleShowBirthdayStatistics() {
         mainApp.showBirthdayStatistics();
