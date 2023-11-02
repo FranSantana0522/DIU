@@ -6,6 +6,9 @@ import ch.makery.address.model.PersonVO;
 
 import java.util.ArrayList;
 
+/**
+ * Interfaz que usa agendaModelo y la clase PersonRepositoryImpl para acceder a la base de datos.
+ */
 public interface PersonRepository {
     ArrayList<PersonVO> ObtenerListaPersona() throws ExcepcionPerson;
 
