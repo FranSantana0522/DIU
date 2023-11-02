@@ -11,6 +11,16 @@ public class PersonVO {
         String ciudad;
         LocalDate nacimiento;
 
+    /**
+     * Constructor de PersonVO
+     * @param id Identificador de la PersonVO
+     * @param nombre
+     * @param apellido
+     * @param calle
+     * @param codigoPostal
+     * @param ciudad
+     * @param nacimiento Formato mysql
+     */
     public PersonVO(Integer id, String nombre, String apellido, String calle, Integer codigoPostal, String ciudad, LocalDate nacimiento) {
         this.id=id;
         this.nombre = nombre;
@@ -21,6 +31,9 @@ public class PersonVO {
         this.nacimiento = nacimiento;
     }
 
+    /**
+     * Constructor vacio
+     */
     public PersonVO() {
 
     }
