@@ -62,6 +62,7 @@ public class MainApp extends Application {
         ArrayList<Person>listaPerson = new ArrayList<Person>();
         try{
             listaPersonVO = am.listarPersonas();
+            am.setNumeroPersonas(listaPersonVO.size());
         } catch (ExcepcionPerson e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Error al listar las personas.");
@@ -169,16 +170,13 @@ public class MainApp extends Application {
             // Set the person into the controller.
             PersonEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            numPerson= (double) personData.size();
-            DoubleProperty n=new SimpleDoubleProperty(numPerson);
-            controller.setPerson(person);
             controller.setAm(am);
-            controller.setBarrita(am.setProgreso(n));
-            IntegerProperty n2=new SimpleIntegerProperty(numPerson.intValue());
-            controller.setProgreso(n2);
-            // Show the dialog and wait until the user closes it
+            controller.setPerson(person);
 
+            // Show the dialog and wait until the user closes it
+            controller.setBarrita();
             dialogStage.showAndWait();
+
 
             return controller.isOkClicked();
         } catch (IOException e) {

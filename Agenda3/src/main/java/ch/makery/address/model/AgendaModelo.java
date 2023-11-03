@@ -2,31 +2,29 @@ package ch.makery.address.model;
 
 import ch.makery.address.model.repository.PersonRepository;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.ArrayList;
 
 public class AgendaModelo {
     PersonRepository personRepository;
 
-    DoubleProperty progreso=new SimpleDoubleProperty(0);
 
-    /**
-     * Asigno el progreso de la progressBar con los properties
-     * @param progreso tamaño de la tabla
-     * @return progreso
-     */
-    public DoubleProperty setProgreso(DoubleProperty progreso){
-        this.progreso=progreso;
-        return progreso;
+    IntegerProperty numeroPersonas=new SimpleIntegerProperty();
+
+    public void setNumeroPersonas(Integer nP){
+        this.numeroPersonas.set(nP);
+    }
+    public  void decNumeroPersonas(){
+        this.numeroPersonas.set(numeroPersonas.get()-1);
+    }public  void incNumeroPersonas() {
+        this.numeroPersonas.set(numeroPersonas.get()+1);
     }
 
-    public double getProgreso() {
-        return progreso.get();
-    }
-
-    public DoubleProperty progresoProperty() {
-        return progreso;
+    public IntegerProperty numeroPersonasProperty() {
+        return numeroPersonas;
     }
 
     /**

@@ -1,10 +1,13 @@
 package ch.makery.address.controller;
 
+import ch.makery.address.MainApp;
 import ch.makery.address.model.AgendaModelo;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -41,6 +44,7 @@ public class PersonEditDialogController {
     private Stage dialogStage;
     private Person person;
     private AgendaModelo am;
+    private IntegerProperty numPerson=new SimpleIntegerProperty();
     private boolean okClicked = false;
 
 
@@ -55,23 +59,18 @@ public class PersonEditDialogController {
     public void setAm(AgendaModelo am) {
         this.am = am;
     }
-
-    /**
-     * Asignamos el numero de persona de la tabla para el label
-     * @param numPerson
-     */
-    public void setProgreso(IntegerProperty numPerson){
-        this.progreso.setText(numPerson.getValue()+"/50");
+    public void setBarrita(){
+        this.numPerson.bind(am.numeroPersonasProperty());
+        this.barrita.setProgress((double) numPerson.get() /50);
+        this.progreso.setText(String.valueOf(barrita.getProgress()*100+"%"));
+        numPerson.addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                barrita.setProgress((double) numPerson.get() /50);
+                progreso.setText(String.valueOf(barrita.getProgress()*100+"%"));
+            }
+        });
     }
-
-    /**
-     * Asignamos el numero de personas de la tabla para la barra de progreso
-     * @param numPerson
-     */
-    public void setBarrita(DoubleProperty numPerson){
-        this.barrita.progressProperty().bind(numPerson.divide(50));
-    }
-
     /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.

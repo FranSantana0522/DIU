@@ -113,6 +113,7 @@ public class PersonOverviewController {
         PersonVO personVO=new PersonVO();
         personVO=cvp.convertirPersonaVO(person);
         am.crearPersonVO(personVO);
+        am.incNumeroPersonas();
     }
 
     /**
@@ -146,6 +147,7 @@ public class PersonOverviewController {
             cvp=new ConversionVO_Person();
             try {
                 am.deletePersonVO(cvp.convertirPersonaVO(personTable.getItems().get(selectedIndex)));
+                am.decNumeroPersonas();
             }catch (ExcepcionPerson e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Error al eliminar la persona");
@@ -178,6 +180,7 @@ public class PersonOverviewController {
                 tempPerson.setIdentificador(am.lastId()+1);
                 CrearPersonAPersonVO(tempPerson);
                 mainApp.getPersonData().add(tempPerson);
+
             }catch(ExcepcionPerson e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Error al añadir la persona");
