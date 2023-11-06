@@ -6,5 +6,5 @@ public class Persona {
     private String apellidos;
     private String direccion;
     private String localidad;
-    private String provincia;z
+    private String provincia;
 }
