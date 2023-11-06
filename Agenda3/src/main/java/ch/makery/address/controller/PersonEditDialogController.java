@@ -93,14 +93,14 @@ public class PersonEditDialogController {
      * @param person
      */
     public void setPerson(Person person) {
-        this.person = person;
-        firstNameField.setText(person.getFirstName());
-        lastNameField.setText(person.getLastName());
-        streetField.setText(person.getStreet());
-        postalCodeField.setText(Integer.toString(person.getPostalCode()));
-        cityField.setText(person.getCity());
-        birthdayField.setText(DateUtil.format(person.getBirthday()));
-        birthdayField.setPromptText("dd.mm.yyyy");
+            this.person = person;
+            firstNameField.setText(person.getFirstName());
+            lastNameField.setText(person.getLastName());
+            streetField.setText(person.getStreet());
+            postalCodeField.setText(Integer.toString(person.getPostalCode()));
+            cityField.setText(person.getCity());
+            birthdayField.setText(DateUtil.format(person.getBirthday()));
+            birthdayField.setPromptText("dd.mm.yyyy");
     }
 
     /**
@@ -117,15 +117,23 @@ public class PersonEditDialogController {
      */
     @FXML
     private void handleOk() {
-        if (isInputValid()) {
-            person.setFirstName(firstNameField.getText());
-            person.setLastName(lastNameField.getText());
-            person.setStreet(streetField.getText());
-            person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
-            person.setCity(cityField.getText());
-            person.setBirthday(DateUtil.parse(birthdayField.getText()));
-            okClicked=true;
-            dialogStage.close();
+        if (numPerson.getValue()<50) {
+            if (isInputValid()) {
+                person.setFirstName(firstNameField.getText());
+                person.setLastName(lastNameField.getText());
+                person.setStreet(streetField.getText());
+                person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
+                person.setCity(cityField.getText());
+                person.setBirthday(DateUtil.parse(birthdayField.getText()));
+                okClicked = true;
+                dialogStage.close();
+            }
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error al añadir una persona");
+            alert.setTitle("Error al añadir");
+            alert.setContentText("Se ha alcanzado el tamaño maximo de personas de la agenda");
+            alert.showAndWait();
         }
     }
 
