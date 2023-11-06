@@ -62,12 +62,12 @@ public class PersonEditDialogController {
     public void setBarrita(){
         this.numPerson.bind(am.numeroPersonasProperty());
         this.barrita.setProgress((double) numPerson.get() /50);
-        this.progreso.setText(String.valueOf(barrita.getProgress()*100+"%"));
+        this.progreso.setText(String.valueOf(numPerson.get()*100/50+"%"));
         numPerson.addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 barrita.setProgress((double) numPerson.get() /50);
-                progreso.setText(String.valueOf(barrita.getProgress()*100+"%"));
+                progreso.setText(String.valueOf( numPerson.get()*100/50+"%"));
             }
         });
     }

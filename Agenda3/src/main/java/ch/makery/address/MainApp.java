@@ -8,6 +8,7 @@ import ch.makery.address.model.AgendaModelo;
 import ch.makery.address.model.ExcepcionPerson;
 import ch.makery.address.model.Person;
 import ch.makery.address.model.PersonVO;
+import ch.makery.address.model.repository.PersonRepository;
 import ch.makery.address.model.repository.impl.PersonRepositoryImpl;
 import ch.makery.address.util.ConversionVO_Person;
 import javafx.application.Application;
@@ -35,7 +36,7 @@ public class MainApp extends Application {
     private BorderPane rootLayout;
     private AgendaModelo am;
     private ConversionVO_Person cvp;
-    private PersonRepositoryImpl impl;
+    private PersonRepository impl;
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
     Double numPerson;
