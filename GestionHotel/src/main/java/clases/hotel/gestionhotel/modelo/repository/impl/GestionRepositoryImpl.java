@@ -1,4 +1,4 @@
 package clases.hotel.gestionhotel.modelo.repository.impl;
 
-public class PersonaRepositoryImpl {
+public class GestionRepositoryImpl {
 }
