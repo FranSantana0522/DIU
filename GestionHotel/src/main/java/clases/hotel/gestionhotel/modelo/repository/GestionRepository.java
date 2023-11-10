@@ -14,13 +14,13 @@ public interface GestionRepository {
 
     void addReservaVO(ReservaVO var1) throws ExceptionGH;
 
-    void deletePersonaVO(Integer var1) throws ExceptionGH;
+    void deletePersonaVO(String var1) throws ExceptionGH;
 
     void deleteReservaVO(Integer var1) throws ExceptionGH;
 
     void editPersonaVO(PersonaVO var1) throws ExceptionGH;
 
-    void editReservaVO(PersonaVO var1) throws ExceptionGH;
+    void editReservaVO(ReservaVO var1) throws ExceptionGH;
 
     int lastIdReservaVO() throws ExceptionGH;
 

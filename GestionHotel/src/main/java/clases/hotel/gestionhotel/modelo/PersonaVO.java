@@ -4,11 +4,11 @@ public class PersonaVO {
     private String DNIVO;
     private String nombreVO;
     private String apellidosVO;
-    private String direccionVO;
+    private Integer direccionVO;
     private String localidadVO;
     private String provinciaVO;
 
-    public PersonaVO(String DNIVO, String nombreVO, String apellidosVO, String direccionVO, String localidadVO, String provinciaVO) {
+    public PersonaVO(String DNIVO, String nombreVO, String apellidosVO, Integer direccionVO, String localidadVO, String provinciaVO) {
         this.DNIVO = DNIVO;
         this.nombreVO = nombreVO;
         this.apellidosVO = apellidosVO;
@@ -44,11 +44,12 @@ public class PersonaVO {
         this.apellidosVO = apellidosVO;
     }
 
-    public String getDireccionVO() {
+
+    public Integer getDireccionVO() {
         return direccionVO;
     }
 
-    public void setDireccionVO(String direccionVO) {
+    public void setDireccionVO(Integer direccionVO) {
         this.direccionVO = direccionVO;
     }
 

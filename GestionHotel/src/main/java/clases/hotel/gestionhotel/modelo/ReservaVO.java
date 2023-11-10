@@ -1,19 +1,20 @@
 package clases.hotel.gestionhotel.modelo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ReservaVO {
     private Integer idVO;
-    private Date fechaLlegadaVO;
-    private Date fechaFinVO;
+    private LocalDate fechaLlegadaVO;
+    private LocalDate fechaFinVO;
     private Integer numHabitacionVO;
     private String tipHabVO;
     private Boolean fumadorVO;
     private String regAlojVO;
     private String DNICliente;
 
-    public ReservaVO(Integer idVO, Date fechaLlegadaVO, Date fechaFinVO, Integer numHabitacionVO, String tipHabVO, Boolean fumadorVO, String regAlojVO, String DNICliente) {
-        this.idVO = idVO;
+    public ReservaVO( LocalDate fechaLlegadaVO, LocalDate fechaFinVO, Integer numHabitacionVO, String tipHabVO, Boolean fumadorVO, String regAlojVO, String DNICliente) {
+        this.idVO =0;
         this.fechaLlegadaVO = fechaLlegadaVO;
         this.fechaFinVO = fechaFinVO;
         this.numHabitacionVO = numHabitacionVO;
@@ -42,19 +43,19 @@ public class ReservaVO {
         this.idVO = idVO;
     }
 
-    public Date getFechaLlegadaVO() {
+    public LocalDate getFechaLlegadaVO() {
         return fechaLlegadaVO;
     }
 
-    public void setFechaLlegadaVO(Date fechaLlegadaVO) {
+    public void setFechaLlegadaVO(LocalDate fechaLlegadaVO) {
         this.fechaLlegadaVO = fechaLlegadaVO;
     }
 
-    public Date getFechaFinVO() {
+    public LocalDate getFechaFinVO() {
         return fechaFinVO;
     }
 
-    public void setFechaFinVO(Date fechaFinVO) {
+    public void setFechaFinVO(LocalDate fechaFinVO) {
         this.fechaFinVO = fechaFinVO;
     }
 
