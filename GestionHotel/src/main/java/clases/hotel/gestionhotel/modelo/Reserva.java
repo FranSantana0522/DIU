@@ -26,6 +26,10 @@ public class Reserva {
         this.DNICliente = new SimpleStringProperty(DNICliente);
     }
 
+    public Reserva() {
+
+    }
+
     public int getId() {
         return id.get();
     }
