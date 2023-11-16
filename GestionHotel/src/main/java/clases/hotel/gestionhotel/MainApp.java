@@ -1,5 +1,7 @@
 package clases.hotel.gestionhotel;
 
+import clases.hotel.gestionhotel.controller.GestionOverviewController;
+import clases.hotel.gestionhotel.controller.RootLayoutController;
 import clases.hotel.gestionhotel.modelo.ExceptionGH;
 import clases.hotel.gestionhotel.modelo.PersonaVO;
 import clases.hotel.gestionhotel.modelo.ReservaVO;
@@ -52,8 +54,8 @@ public class MainApp extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
-            //RootLayoutController controller = loader.getController();
-            //controller.setMainApp(this);
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,9 +72,9 @@ public class MainApp extends Application {
             rootLayout.setCenter(personOverview);
 
             // Give the controller access to the main app.
-            //PersonOverviewController controller = loader.getController();
+            GestionOverviewController controller = loader.getController();
             //controller.setModelo(am);
-            //controller.setMainApp(this);
+            controller.setMainApp(this);
 
         } catch (IOException e) {
             e.printStackTrace();

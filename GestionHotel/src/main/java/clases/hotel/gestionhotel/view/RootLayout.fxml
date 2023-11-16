@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clases.hotel.gestionhotel.controller.RootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Personas">
             <items>
-              <MenuItem mnemonicParsing="false" text="Añadir persona" />
-                  <MenuItem mnemonicParsing="false" text="Editar persona" />
-                  <MenuItem mnemonicParsing="false" text="Borrar persona" />
+              <MenuItem fx:id="handleAddPersona" mnemonicParsing="false" text="Añadir persona" />
+                  <MenuItem fx:id="handleEditPersona" mnemonicParsing="false" text="Editar persona" />
+                  <MenuItem fx:id="handleDeletePersona" mnemonicParsing="false" text="Borrar persona" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Reservas">
             <items>
-              <MenuItem mnemonicParsing="false" text="Añadir reserva" />
-                  <MenuItem mnemonicParsing="false" text="Editar reserva" />
-                  <MenuItem mnemonicParsing="false" text="Borrar reserva" />
+              <MenuItem fx:id="handleAddReserva" mnemonicParsing="false" text="Añadir reserva" />
+                  <MenuItem fx:id="handleEditReserva" mnemonicParsing="false" text="Editar reserva" />
+                  <MenuItem fx:id="handleDeleteReserva" mnemonicParsing="false" text="Borrar reserva" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Aplicación">
+              <items>
+                <MenuItem fx:id="handleAplication" mnemonicParsing="false" text="JavaDoc" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Gestión">
+              <items>
+                <MenuItem fx:id="handleOcupation" mnemonicParsing="false" text="Ocupación" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
