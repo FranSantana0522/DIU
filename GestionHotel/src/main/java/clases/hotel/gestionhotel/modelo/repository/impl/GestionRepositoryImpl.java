@@ -30,7 +30,7 @@ public class GestionRepositoryImpl implements GestionRepository {
             Connection conn = this.conexion.conectarBD();
             this.personas = new ArrayList();
             this.stmt = conn.createStatement();
-            this.sentencia = "SELECT * FROM Persona";
+            this.sentencia = "SELECT * FROM Persona ORDER BY Nombre, Apellido";
             ResultSet rs = this.stmt.executeQuery(this.sentencia);
 
             while(rs.next()) {
@@ -51,14 +51,13 @@ public class GestionRepositoryImpl implements GestionRepository {
     }
 
     @Override
-    public ArrayList<ReservaVO> ObtenerListaReservaVO() throws ExceptionGH {
+    public ArrayList<ReservaVO> ObtenerListaReservaVO(String dniC) throws ExceptionGH {
         try {
             Connection conn = this.conexion.conectarBD();
             this.reservas = new ArrayList();
             this.stmt = conn.createStatement();
-            this.sentencia = "SELECT * FROM Reserva";
-            ResultSet rs = this.stmt.executeQuery(this.sentencia);
-
+            String sql = String.format("SELECT * FROM Reserva WHERE DNI_Cliente IN (SELECT DNI FROM Persona WHERE DNI='%s') ORDER BY Fecha_Llegada DESC", dniC);
+            ResultSet rs = this.stmt.executeQuery(sql);
             while(rs.next()) {
                 Integer id=rs.getInt("Identificador");
                 LocalDate llegada = rs.getDate("Fecha_Llegada").toLocalDate();
@@ -75,6 +74,7 @@ public class GestionRepositoryImpl implements GestionRepository {
             this.conexion.desconectarBD(conn);
             return this.reservas;
         }catch (SQLException var6) {
+            var6.printStackTrace();
             throw new ExceptionGH("No se puede");
         }
     }

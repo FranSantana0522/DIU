@@ -3,16 +3,22 @@ package clases.hotel.gestionhotel.controller;
 import clases.hotel.gestionhotel.MainApp;
 import clases.hotel.gestionhotel.modelo.Persona;
 import clases.hotel.gestionhotel.modelo.Reserva;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.time.LocalDate;
+
 public class GestionOverviewController {
     @FXML
     private TableView<Persona> tablaPersona;
     @FXML
-    private TableColumn<Persona, String> persona;
+    private TableColumn<Persona, String> nombreC;
+    @FXML
+    private TableColumn<Persona, String> apellido;
     @FXML
     private Label dni;
     @FXML
@@ -29,7 +35,9 @@ public class GestionOverviewController {
     @FXML
     private TableView<Reserva> tablaReserva;
     @FXML
-    private TableColumn<Reserva, String> reserva;
+    private TableColumn<Reserva, Integer> id;
+    @FXML
+    private TableColumn<Reserva, LocalDate> fechaI;
     @FXML
     private Label fechaL;
     @FXML
@@ -50,8 +58,11 @@ public class GestionOverviewController {
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
-        persona.setCellValueFactory(cellData -> cellData.getValue().DNIProperty());
-        reserva.setCellValueFactory(cellData-> cellData.getValue().DNIClienteProperty());
+        nombreC.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
+        apellido.setCellValueFactory(cellData -> cellData.getValue().apellidosProperty());
+
+        id.setCellValueFactory(cellData-> cellData.getValue().idProperty().asObject());
+        fechaI.setCellValueFactory(cellData-> cellData.getValue().fechaLlegadaProperty());
         // Clear person details.
         showPersonDetails(null);
         showReservaDetails(null);
@@ -61,6 +72,15 @@ public class GestionOverviewController {
 
         tablaReserva.getSelectionModel().selectedItemProperty().addListener(
                 (observable,oldValue, newValue) -> showReservaDetails(newValue));
+
+        tablaPersona.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> personReserva(newValue.getDNI()));
+    }
+    private void personReserva(String dni){
+        ObservableList<Reserva> reservaData = FXCollections.observableArrayList();
+        reservaData.addAll(mainApp.addListReserva(dni));
+        mainApp.setReservaData(reservaData);
+        tablaReserva.setItems(mainApp.getReservaData());
     }
 
     private void showReservaDetails(Reserva reserva) {
@@ -116,6 +136,5 @@ public class GestionOverviewController {
         this.mainApp = mainApp;
         // Add observable list data to the table
         tablaPersona.setItems(mainApp.getPersonData());
-        tablaReserva.setItems(mainApp.getReservaData());
     }
 }

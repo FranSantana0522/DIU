@@ -24,6 +24,7 @@ public class Persona {
     }
 
     public Persona() {
+        this(null,null,null,null,null,null);
     }
 
     public String getDNI() {

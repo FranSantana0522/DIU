@@ -29,8 +29,8 @@ public class GestionModelo {
 
     // GESTION DE RESERVAS
 
-    public ArrayList<ReservaVO> listarReservas() throws ExceptionGH {
-        return gestionRepository.ObtenerListaReservaVO();
+    public ArrayList<ReservaVO> listarReservas(String dniC) throws ExceptionGH {
+        return gestionRepository.ObtenerListaReservaVO(dniC);
     }
     public void crearReservaVO(ReservaVO reservaVO) throws ExceptionGH {
         gestionRepository.addReservaVO(reservaVO);

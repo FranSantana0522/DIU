@@ -27,7 +27,7 @@ public class Reserva {
     }
 
     public Reserva() {
-
+        this(0,null,null,0,null,false,null,null);
     }
 
     public int getId() {
