@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +36,9 @@ public class MainApp extends Application {
 
     private ObservableList<Persona> personData = FXCollections.observableArrayList();
     private ObservableList<Reserva> reservaData = FXCollections.observableArrayList();
+
+    private TableView<Persona> tablaPersona;
+    private Integer i;
 
 
     public MainApp(){
@@ -124,10 +128,23 @@ public class MainApp extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
             RootLayoutController controller = loader.getController();
+            controller.setGm(gm);
+            controller.setConv(conv);
+            GestionOverviewController goc=new GestionOverviewController();
+            controller.setGoc(goc);
+            controller.setTablaPersona(tablaPersona);
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setI(Integer i) {
+        this.i = i;
+    }
+
+    public void setTablaPersona(TableView<Persona> tablaPersona) {
+        this.tablaPersona = tablaPersona;
     }
 
     public void showGestionOverview() {
@@ -157,7 +174,7 @@ public class MainApp extends Application {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Person");
+            dialogStage.setTitle("Crear/Editar Persona");
             dialogStage.initModality(Modality.NONE);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);

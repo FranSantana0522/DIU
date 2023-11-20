@@ -52,7 +52,6 @@ public class GestionOverviewController {
     private Label regAlo;
 
     private MainApp mainApp;
-
     public GestionOverviewController() {
     }
     @FXML
@@ -66,6 +65,7 @@ public class GestionOverviewController {
         // Clear person details.
         showPersonDetails(null);
         showReservaDetails(null);
+
         // Listen for selection changes and show the person details when changed.
         tablaPersona.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showPersonDetails(newValue));
@@ -112,7 +112,7 @@ public class GestionOverviewController {
 
 
 
-    private void showPersonDetails(Persona person) {
+    void showPersonDetails(Persona person) {
         if (person != null) {
             // Fill the labels with info from the person object.
             dni.setText(person.getDNI());
@@ -136,5 +136,7 @@ public class GestionOverviewController {
         this.mainApp = mainApp;
         // Add observable list data to the table
         tablaPersona.setItems(mainApp.getPersonData());
+        mainApp.setTablaPersona(tablaPersona);
+        mainApp.setI(tablaPersona.getSelectionModel().getFocusedIndex());
     }
 }
