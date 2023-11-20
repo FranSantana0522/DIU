@@ -1,5 +1,6 @@
 package clases.hotel.gestionhotel;
 
+import clases.hotel.gestionhotel.controller.CrearPersonaController;
 import clases.hotel.gestionhotel.controller.GestionOverviewController;
 import clases.hotel.gestionhotel.controller.RootLayoutController;
 import clases.hotel.gestionhotel.modelo.*;
@@ -15,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -145,6 +147,36 @@ public class MainApp extends Application {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public boolean showPersonEditDialog(Persona person) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CrearPersona.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Person");
+            dialogStage.initModality(Modality.NONE);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            CrearPersonaController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setGm(gm);
+            controller.setPerson(person);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
