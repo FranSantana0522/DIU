@@ -4,39 +4,39 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clases.hotel.gestionhotel.controller.RootLayoutController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="Personas">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleAddPersona" text="Añadir persona" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleEditPersona" text="Editar persona" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleDeletePersona" text="Borrar persona" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Reservas">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleAddReserva" text="Añadir reserva" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleEditReserva" text="Editar reserva" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleDeleteReserva" text="Borrar reserva" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Aplicación">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#handleAplication" text="JavaDoc" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Gestión">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#handleOcupation" text="Ocupación" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Busqueda">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#handleBusqueda" text="Buscar reserva por DNI" />
-              </items>
-            </Menu>
-        </menus>
-      </MenuBar>
-   </top>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Personas">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleAddPersona" text="Añadir persona" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleEditPersona" text="Editar persona" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleDeletePersona" text="Borrar persona" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Reservas">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleAddReserva" text="Añadir reserva" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleEditReserva" text="Editar reserva" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleDeleteReserva" text="Borrar reserva" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Aplicación">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleAplication" text="JavaDoc" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Gestión">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleOcupation" text="Ocupación" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Busqueda">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleBusqueda" text="Buscar reserva por DNI" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
 </BorderPane>

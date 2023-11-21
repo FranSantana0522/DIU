@@ -5,25 +5,25 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clases.hotel.gestionhotel.controller.CrearPersonaController">
-   <children>
-      <Label layoutX="20" layoutY="20" text="Datos del cliente">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="45.0" layoutY="95.0" text="DNI" />
-      <Label layoutX="45.0" layoutY="135.0" text="Nombre" />
-      <Label layoutX="45.0" layoutY="175.0" text="Apellidos" />
-      <Label layoutX="45.0" layoutY="215.0" text="Direción" />
-      <Label layoutX="45.0" layoutY="255.0" text="Localidad" />
-      <Label layoutX="45.0" layoutY="295.0" text="Provincia" />
-      <TextField fx:id="dniField" layoutX="129.0" layoutY="91.0" />
-      <TextField fx:id="nombreField" layoutX="129.0" layoutY="131.0" />
-      <TextField fx:id="apellidosField" layoutX="129.0" layoutY="171.0" />
-      <TextField fx:id="direcionField" layoutX="129.0" layoutY="211.0" />
-      <TextField fx:id="localidadField" layoutX="129.0" layoutY="251.0" />
-      <TextField fx:id="provinciaField" layoutX="129.0" layoutY="291.0" />
-      <Button layoutX="150.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="40.0" prefWidth="35.0" styleClass="btnTick" stylesheets="@imageCSS.css" />
-      <Button layoutX="250.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleCancel" styleClass="btnClose" stylesheets="@imageCSS.css" />
-   </children>
+    <children>
+        <Label layoutX="20" layoutY="20" text="Datos del cliente">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="95.0" text="DNI" />
+        <Label layoutX="45.0" layoutY="135.0" text="Nombre" />
+        <Label layoutX="45.0" layoutY="175.0" text="Apellidos" />
+        <Label layoutX="45.0" layoutY="215.0" text="Direción" />
+        <Label layoutX="45.0" layoutY="255.0" text="Localidad" />
+        <Label layoutX="45.0" layoutY="295.0" text="Provincia" />
+        <TextField fx:id="dniField" layoutX="129.0" layoutY="91.0" />
+        <TextField fx:id="nombreField" layoutX="129.0" layoutY="131.0" />
+        <TextField fx:id="apellidosField" layoutX="129.0" layoutY="171.0" />
+        <TextField fx:id="direcionField" layoutX="129.0" layoutY="211.0" />
+        <TextField fx:id="localidadField" layoutX="129.0" layoutY="251.0" />
+        <TextField fx:id="provinciaField" layoutX="129.0" layoutY="291.0" />
+        <Button layoutX="150.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="40.0" prefWidth="35.0" styleClass="btnTick" stylesheets="@imageCSS.css" />
+        <Button layoutX="250.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleCancel" styleClass="btnClose" stylesheets="@imageCSS.css" />
+    </children>
 </AnchorPane>
