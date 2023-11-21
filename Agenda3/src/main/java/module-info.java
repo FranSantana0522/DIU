@@ -10,10 +10,10 @@ module ch.makery.address {
 
     opens ch.makery.address to javafx.fxml;
     exports ch.makery.address;
-    exports ch.makery.address.controller;
     opens ch.makery.address.controller to javafx.fxml;
-    exports ch.makery.address.model;
+    exports ch.makery.address.controller;
     opens ch.makery.address.model to javafx.fxml;
-    exports ch.makery.address.util;
+    exports ch.makery.address.model;
     opens ch.makery.address.util to javafx.fxml;
+    exports ch.makery.address.util;
 }

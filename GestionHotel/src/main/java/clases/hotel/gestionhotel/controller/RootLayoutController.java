@@ -1,10 +1,7 @@
 package clases.hotel.gestionhotel.controller;
 
 import clases.hotel.gestionhotel.MainApp;
-import clases.hotel.gestionhotel.modelo.ExceptionGH;
-import clases.hotel.gestionhotel.modelo.GestionModelo;
-import clases.hotel.gestionhotel.modelo.Persona;
-import clases.hotel.gestionhotel.modelo.PersonaVO;
+import clases.hotel.gestionhotel.modelo.*;
 import clases.hotel.gestionhotel.util.Conversor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -97,9 +94,30 @@ public class RootLayoutController {
     }
 
     public void handleDeletePersona(ActionEvent actionEvent) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("No disponible");
+        alerta.setHeaderText("Esta opcion no esta disponible");
+        alerta.setContentText("El borrado de personas no esta disponible en este momento.");
+        alerta.showAndWait();
     }
 
     public void handleAddReserva(ActionEvent actionEvent) {
+        Reserva tempReserva = new Reserva();
+        boolean okClicked = mainApp.showReservaEditDialog(tempReserva);
+        if (okClicked) {
+            try{
+                ReservaVO reservaVO=new ReservaVO();
+                reservaVO=conv.convertirReservaVO(tempReserva);
+                gm.crearReservaVO(reservaVO);
+                mainApp.getReservaData().add(tempReserva);
+            }catch(ExceptionGH e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Error al añadir la reserva");
+                alert.setTitle("Error con la base de datos");
+                alert.setContentText("No se puede conectar con la base de datos para añadir la reserva");
+                alert.showAndWait();
+            }
+        }
     }
 
     public void handleEditReserva(ActionEvent actionEvent) {

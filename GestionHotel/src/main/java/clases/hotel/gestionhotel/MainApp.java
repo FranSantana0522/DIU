@@ -1,6 +1,7 @@
 package clases.hotel.gestionhotel;
 
 import clases.hotel.gestionhotel.controller.CrearPersonaController;
+import clases.hotel.gestionhotel.controller.CrearReservaController;
 import clases.hotel.gestionhotel.controller.GestionOverviewController;
 import clases.hotel.gestionhotel.controller.RootLayoutController;
 import clases.hotel.gestionhotel.modelo.*;
@@ -183,8 +184,42 @@ public class MainApp extends Application {
             // Set the person into the controller.
             CrearPersonaController controller = loader.getController();
             controller.setDialogStage(dialogStage);
+            RootLayoutController rlc=new RootLayoutController();
+            rlc.setI(i);
             controller.setGm(gm);
             controller.setPerson(person);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean showReservaEditDialog(Reserva reserva) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CrearReserva.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Crear/Editar Reserva");
+            dialogStage.initModality(Modality.NONE);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            CrearReservaController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            RootLayoutController rlc=new RootLayoutController();
+            rlc.setI(i);
+          //  controller.setGm(gm);
+          //  controller.setPerson(person);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
