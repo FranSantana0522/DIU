@@ -3,6 +3,7 @@ package clases.hotel.gestionhotel.controller;
 import clases.hotel.gestionhotel.MainApp;
 import clases.hotel.gestionhotel.modelo.*;
 import clases.hotel.gestionhotel.util.Conversor;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,9 +14,9 @@ public class RootLayoutController {
     private MainApp mainApp;
     private GestionModelo gm;
     private Conversor conv;
-    private GestionOverviewController goc;
     private TableView<Persona> tablaPersona;
-    private int i;
+
+    private TableView<Reserva> tablaReserva;
 
 
 
@@ -31,18 +32,6 @@ public class RootLayoutController {
 
     public void setConv(Conversor conv) {
         this.conv = conv;
-    }
-
-    public void setGoc(GestionOverviewController goc) {
-        this.goc = goc;
-    }
-
-    public void setTablaPersona(TableView<Persona> tablaPersona) {
-        this.tablaPersona = tablaPersona;
-    }
-
-    public void setI(int i) {
-        this.i = i;
     }
 
     public void handleAddPersona(ActionEvent actionEvent) {
@@ -65,7 +54,8 @@ public class RootLayoutController {
     }
 
     public void handleEditPersona(ActionEvent actionEvent) {
-        Persona selectedPerson = tablaPersona.getItems().get(i);
+        tablaPersona=mainApp.getTablaPersona();
+        Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
         if (selectedPerson != null) {
             boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
             if (okClicked) {
@@ -73,8 +63,8 @@ public class RootLayoutController {
                     PersonaVO personVO=new PersonaVO();
                     personVO=conv.convertirPersonaVO(selectedPerson);
                     gm.editarPersonaVO(personVO);
-                    goc.showPersonDetails(selectedPerson);
                 }catch(ExceptionGH e){
+                    e.printStackTrace();
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Error al editar la persona");
                     alert.setTitle("Error con la base de datos");
@@ -102,10 +92,13 @@ public class RootLayoutController {
     }
 
     public void handleAddReserva(ActionEvent actionEvent) {
+        tablaPersona=mainApp.getTablaPersona();
+        Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
         Reserva tempReserva = new Reserva();
-        boolean okClicked = mainApp.showReservaEditDialog(tempReserva);
+        boolean okClicked = mainApp.showReservaEditDialog(tempReserva, selectedPerson);
         if (okClicked) {
             try{
+                tempReserva.setId(gm.lastIdReserva()+1);
                 ReservaVO reservaVO=new ReservaVO();
                 reservaVO=conv.convertirReservaVO(tempReserva);
                 gm.crearReservaVO(reservaVO);
@@ -121,9 +114,47 @@ public class RootLayoutController {
     }
 
     public void handleEditReserva(ActionEvent actionEvent) {
+        tablaPersona=mainApp.getTablaPersona();
+        Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
+        tablaReserva=mainApp.getTablaReserva();
+        Reserva selectedReserva =tablaReserva.getItems().get(mainApp.getiR());
+        boolean okClicked = mainApp.showReservaEditDialog(selectedReserva, selectedPerson);
+        if (okClicked) {
+            try{
+                ReservaVO reservaVO=new ReservaVO();
+                reservaVO=conv.convertirReservaVO(selectedReserva);
+                gm.editarReservaVO(reservaVO);
+            }catch(ExceptionGH e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Error al añadir la reserva");
+                alert.setTitle("Error con la base de datos");
+                alert.setContentText("No se puede conectar con la base de datos para añadir la reserva");
+                alert.showAndWait();
+            }
+        }
     }
 
     public void handleDeleteReserva(ActionEvent actionEvent) {
+        int selectedIndex = mainApp.getiR();
+        if (selectedIndex >= 0) {
+            try {
+                gm.deleteReservaVO(conv.convertirReservaVO((tablaReserva.getItems().get(selectedIndex))));
+                tablaReserva.getItems().remove(selectedIndex);
+            }catch (ExceptionGH e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Error al eliminar la persona");
+                alert.setTitle("Error con la base de datos");
+                alert.setContentText("No se puede conectar con la base de datos para eliminar la persona");
+                alert.showAndWait();
+            }
+        } else {
+            // Nothing selected.
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("No Selection");
+            alerta.setHeaderText("No Person Selected");
+            alerta.setContentText("Please select a person in the table.");
+            alerta.showAndWait();
+        }
     }
 
     public void handleAplication(ActionEvent actionEvent) {

@@ -39,7 +39,9 @@ public class MainApp extends Application {
     private ObservableList<Reserva> reservaData = FXCollections.observableArrayList();
 
     private TableView<Persona> tablaPersona;
+    private TableView<Reserva> tablaReserva;
     private Integer i;
+    private Integer iR;
 
 
     public MainApp(){
@@ -131,9 +133,6 @@ public class MainApp extends Application {
             RootLayoutController controller = loader.getController();
             controller.setGm(gm);
             controller.setConv(conv);
-            GestionOverviewController goc=new GestionOverviewController();
-            controller.setGoc(goc);
-            controller.setTablaPersona(tablaPersona);
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
@@ -148,6 +147,31 @@ public class MainApp extends Application {
         this.tablaPersona = tablaPersona;
     }
 
+    public TableView<Persona> getTablaPersona() {
+        return tablaPersona;
+    }
+
+    public Integer getI() {
+        return i;
+    }
+
+    public TableView<Reserva> getTablaReserva() {
+        return tablaReserva;
+    }
+
+    public void setTablaReserva(TableView<Reserva> tablaReserva) {
+        this.tablaReserva = tablaReserva;
+    }
+
+    public Integer getiR() {
+        return iR;
+    }
+
+    public void setiR(Integer iR) {
+        this.iR = iR;
+    }
+
+
     public void showGestionOverview() {
         try {
             // Load person overview.
@@ -160,7 +184,6 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             GestionOverviewController controller = loader.getController();
-            //controller.setModelo(am);
             controller.setMainApp(this);
 
         } catch (IOException e) {
@@ -184,8 +207,6 @@ public class MainApp extends Application {
             // Set the person into the controller.
             CrearPersonaController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            RootLayoutController rlc=new RootLayoutController();
-            rlc.setI(i);
             controller.setGm(gm);
             controller.setPerson(person);
 
@@ -199,7 +220,7 @@ public class MainApp extends Application {
             return false;
         }
     }
-    public boolean showReservaEditDialog(Reserva reserva) {
+    public boolean showReservaEditDialog(Reserva reserva, Persona persona) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CrearReserva.fxml"));
@@ -212,14 +233,14 @@ public class MainApp extends Application {
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
-
             // Set the person into the controller.
             CrearReservaController controller = loader.getController();
+            controller.setGm(gm);
+            controller.setPerson(persona);
+            controller.setReserva(reserva);
             controller.setDialogStage(dialogStage);
-            RootLayoutController rlc=new RootLayoutController();
-            rlc.setI(i);
-          //  controller.setGm(gm);
-          //  controller.setPerson(person);
+
+
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

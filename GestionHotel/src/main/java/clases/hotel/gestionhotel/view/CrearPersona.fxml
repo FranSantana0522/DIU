@@ -25,5 +25,6 @@
         <TextField fx:id="provinciaField" layoutX="129.0" layoutY="291.0" />
         <Button layoutX="150.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="40.0" prefWidth="35.0" styleClass="btnTick" stylesheets="@imageCSS.css" />
         <Button layoutX="250.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleCancel" styleClass="btnClose" stylesheets="@imageCSS.css" />
+      <Button layoutX="25.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleVaciar" styleClass="btnPapeleta" stylesheets="@imageCSS.css" />
     </children>
 </AnchorPane>

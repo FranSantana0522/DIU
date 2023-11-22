@@ -3,10 +3,12 @@ package clases.hotel.gestionhotel.controller;
 import clases.hotel.gestionhotel.MainApp;
 import clases.hotel.gestionhotel.modelo.Persona;
 import clases.hotel.gestionhotel.modelo.Reserva;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -50,7 +52,8 @@ public class GestionOverviewController {
     private Label fum;
     @FXML
     private Label regAlo;
-
+    private Integer i;
+    private Integer iR;
     private MainApp mainApp;
     public GestionOverviewController() {
     }
@@ -75,6 +78,24 @@ public class GestionOverviewController {
 
         tablaPersona.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> personReserva(newValue.getDNI()));
+
+
+        tablaPersona.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    i = tablaPersona.getSelectionModel().getSelectedIndex();
+                    if (i != null) {
+                        pasarIndex();
+                    }
+                });
+
+        tablaReserva.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    iR = tablaReserva.getSelectionModel().getSelectedIndex();
+                    if (iR != null) {
+                        pasarIndexReserva();
+                    }
+                });
+
     }
     private void personReserva(String dni){
         ObservableList<Reserva> reservaData = FXCollections.observableArrayList();
@@ -132,11 +153,17 @@ public class GestionOverviewController {
             provincia.setText("");
         }
     }
+    public void pasarIndex(){
+        mainApp.setI(i);
+    }
+    public void pasarIndexReserva(){
+        mainApp.setiR(iR);
+    }
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         // Add observable list data to the table
         tablaPersona.setItems(mainApp.getPersonData());
         mainApp.setTablaPersona(tablaPersona);
-        mainApp.setI(tablaPersona.getSelectionModel().getFocusedIndex());
+        mainApp.setTablaReserva(tablaReserva);
     }
 }

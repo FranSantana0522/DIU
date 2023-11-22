@@ -31,12 +31,23 @@ public class CrearPersonaController {
 
     public void setPerson(Persona person) {
         this.person = person;
-        dniField.setText(person.getDNI());
-        nombreField.setText(person.getNombre());
-        apellidosField.setText(person.getApellidos());
-        direcionField.setText(Integer.toString(person.getDireccion()));
-        localidadField.setText(person.getLocalidad());
-        provinciaField.setText(person.getProvincia());
+        if (person.getDNI()!=null){
+            dniField.setText(person.getDNI());
+            dniField.setEditable(false);
+            nombreField.setText(person.getNombre());
+            apellidosField.setText(person.getApellidos());
+            direcionField.setText(Integer.toString(person.getDireccion()));
+            localidadField.setText(person.getLocalidad());
+            provinciaField.setText(person.getProvincia());
+        }else{
+            dniField.setText(person.getDNI());
+            nombreField.setText(person.getNombre());
+            apellidosField.setText(person.getApellidos());
+            direcionField.setText(Integer.toString(person.getDireccion()));
+            localidadField.setText(person.getLocalidad());
+            provinciaField.setText(person.getProvincia());
+        }
+
     }
     public void setGm(GestionModelo gm) {
         this.gm = gm;
@@ -114,5 +125,13 @@ public class CrearPersonaController {
             alerta.showAndWait();
             return false;
         }
+    }
+
+    public void handleVaciar(ActionEvent actionEvent) {
+        nombreField.setText("");
+        apellidosField.setText("");
+        direcionField.setText("");
+        localidadField.setText("");
+        provinciaField.setText("");
     }
 }

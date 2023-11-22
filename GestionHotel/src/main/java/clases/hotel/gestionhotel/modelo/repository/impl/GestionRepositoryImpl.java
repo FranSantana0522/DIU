@@ -109,6 +109,7 @@ public class GestionRepositoryImpl implements GestionRepository {
             this.stmt.close();
             this.conexion.desconectarBD(conn);
         } catch (SQLException var3) {
+            var3.printStackTrace();
             throw new ExceptionGH("No se ha podido realizar la operación");
         }
     }
@@ -146,7 +147,7 @@ public class GestionRepositoryImpl implements GestionRepository {
         try {
             Connection conn = this.conexion.conectarBD();
             this.stmt = conn.createStatement();
-            String sql = String.format("UPDATE Persona SET Nombre = '%s', Apellido = '%s', Direccion = '%s', Localidad = '%s', Provincia = '%s' WHERE DNI = %s", personaVO.getNombreVO(), personaVO.getApellidosVO(),personaVO.getDireccionVO(),personaVO.getLocalidadVO(),personaVO.getProvinciaVO(), personaVO.getDNIVO());
+            String sql = String.format("UPDATE Persona SET Nombre = '%s', Apellido = '%s', Direccion = '%s', Localidad = '%s', Provincia = '%s' WHERE DNI = '%s'", personaVO.getNombreVO(), personaVO.getApellidosVO(),personaVO.getDireccionVO(),personaVO.getLocalidadVO(),personaVO.getProvinciaVO(), personaVO.getDNIVO());
             this.stmt.executeUpdate(sql);
         } catch (Exception var4) {
             throw new ExceptionGH("No se ha podido realizar la edición");

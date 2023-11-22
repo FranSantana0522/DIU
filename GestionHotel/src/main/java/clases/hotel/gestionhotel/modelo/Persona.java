@@ -98,4 +98,16 @@ public class Persona {
     public void setProvincia(String provincia) {
         this.provincia.set(provincia);
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "DNI=" + DNI +
+                ", nombre=" + nombre +
+                ", apellidos=" + apellidos +
+                ", direccion=" + direccion +
+                ", localidad=" + localidad +
+                ", provincia=" + provincia +
+                '}';
+    }
 }
