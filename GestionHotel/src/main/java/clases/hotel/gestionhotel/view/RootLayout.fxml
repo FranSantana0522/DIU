@@ -33,7 +33,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Busqueda">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleBusqueda" text="Buscar reserva por DNI" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleBusqueda" text="Buscar persona por DNI" />
                     </items>
                 </Menu>
             </menus>

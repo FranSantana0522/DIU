@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="14.0" layoutY="84.0" prefHeight="56.0" prefWidth="565.0">
+        <columns>
+          <TableColumn prefWidth="91.20001411437988" text="DNI" />
+          <TableColumn prefWidth="79.20000457763672" text="Nombre" />
+            <TableColumn prefWidth="131.0" text="Apellidos" />
+            <TableColumn prefWidth="68.19998168945312" text="Direción" />
+            <TableColumn prefWidth="94.79998779296875" text="Localidad" />
+            <TableColumn prefWidth="103.60000610351562" text="Provincia" />
+        </columns>
+      </TableView>
+      <TextField layoutX="214.0" layoutY="39.0" />
+      <Label layoutX="248.0" layoutY="14.0" text="Introduzca DNI" />
+      <Button layoutX="381.0" layoutY="32.0" mnemonicParsing="false" styleClass="btnLupa" stylesheets="@imageCSS.css" />
+      <TableView layoutX="14.0" layoutY="155.0" prefHeight="200.0" prefWidth="566.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
