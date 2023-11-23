@@ -307,7 +307,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * 
+     *
      */
     public void showBusquedaPersona() {
         try {
