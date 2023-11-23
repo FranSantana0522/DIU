@@ -41,10 +41,17 @@ public class MainApp extends Application {
     private Integer iR;
 
 
+    /**
+     * Constructor de la clase donde añado la lista de personas
+     */
     public MainApp(){
         personData.addAll(addListPersona());
     }
 
+    /**
+     * Añade a la tabla de personas las personas
+     * @return
+     */
     public ArrayList<Persona> addListPersona(){
         gm=new GestionModelo();
         conv=new Conversor();
@@ -64,6 +71,12 @@ public class MainApp extends Application {
         listaPersona=conv.listaPersona(listaPersonaVO);
         return listaPersona;
     }
+
+    /**
+     * Añade a la tabla reservas las reservas del cliente
+     * @param dniC
+     * @return
+     */
     public ArrayList<Reserva> addListReserva(String dniC){
         gm=new GestionModelo();
         conv=new Conversor();
@@ -307,7 +320,7 @@ public class MainApp extends Application {
     }
 
     /**
-     *
+     *Enseña la busqueda de la persona
      */
     public void showBusquedaPersona() {
         try {

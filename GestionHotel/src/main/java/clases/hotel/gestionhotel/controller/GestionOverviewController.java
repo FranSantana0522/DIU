@@ -55,8 +55,16 @@ public class GestionOverviewController {
     private Integer i;
     private Integer iR;
     private MainApp mainApp;
+
+    /**
+     * Constructor del gestion overview vacio
+     */
     public GestionOverviewController() {
     }
+
+    /**
+     * Se ejecuta al iniciar el controlador
+     */
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
@@ -97,6 +105,11 @@ public class GestionOverviewController {
                 });
 
     }
+
+    /**
+     * Metodo para cargar las reservas de la persona
+     * @param dni
+     */
     private void personReserva(String dni){
         ObservableList<Reserva> reservaData = FXCollections.observableArrayList();
         reservaData.addAll(mainApp.addListReserva(dni));
@@ -104,6 +117,10 @@ public class GestionOverviewController {
         tablaReserva.setItems(mainApp.getReservaData());
     }
 
+    /**
+     * Muestra los detalles de la reserva
+     * @param reserva
+     */
     private void showReservaDetails(Reserva reserva) {
         if (reserva != null) {
             // Fill the labels with info from the person object.
@@ -132,7 +149,10 @@ public class GestionOverviewController {
     }
 
 
-
+    /**
+     * Muestra los detalles de la persona
+     * @param person
+     */
     void showPersonDetails(Persona person) {
         if (person != null) {
             // Fill the labels with info from the person object.
@@ -153,9 +173,17 @@ public class GestionOverviewController {
             provincia.setText("");
         }
     }
+
+    /**
+     * Pasa el index de la tabla de personas
+     */
     public void pasarIndex(){
         mainApp.setI(i);
     }
+
+    /**
+     * Pasa el index de la tabla de reserva
+     */
     public void pasarIndexReserva(){
         mainApp.setiR(iR);
     }

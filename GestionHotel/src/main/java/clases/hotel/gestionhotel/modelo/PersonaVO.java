@@ -8,6 +8,15 @@ public class PersonaVO {
     private String localidadVO;
     private String provinciaVO;
 
+    /**
+     * Constructor de la personaVO
+     * @param DNIVO
+     * @param nombreVO
+     * @param apellidosVO
+     * @param direccionVO
+     * @param localidadVO
+     * @param provinciaVO
+     */
     public PersonaVO(String DNIVO, String nombreVO, String apellidosVO, Integer direccionVO, String localidadVO, String provinciaVO) {
         this.DNIVO = DNIVO;
         this.nombreVO = nombreVO;
@@ -17,6 +26,9 @@ public class PersonaVO {
         this.provinciaVO = provinciaVO;
     }
 
+    /**
+     * Constructor de la personaVO vacio
+     */
     public PersonaVO() {
     }
 
@@ -43,7 +55,6 @@ public class PersonaVO {
     public void setApellidosVO(String apellidosVO) {
         this.apellidosVO = apellidosVO;
     }
-
 
     public Integer getDireccionVO() {
         return direccionVO;

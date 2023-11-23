@@ -9,6 +9,11 @@ import java.util.ArrayList;
 
 public class Conversor {
 
+    /**
+     * Metodo para convertir de personaVO a persona
+     * @param personVO
+     * @return
+     */
     public Persona convertirPersona(PersonaVO personVO){
         Persona person = new Persona();
         person.setDNI(personVO.getDNIVO());
@@ -20,6 +25,11 @@ public class Conversor {
         return person;
     }
 
+    /**
+     * Metodo que transforma una lista de personaVO a lista de personas
+     * @param listaPersonVO
+     * @return
+     */
     public ArrayList<Persona> listaPersona(ArrayList<PersonaVO> listaPersonVO){
         ArrayList<Persona> listaPerson = new ArrayList<Persona>();
         Persona person = new Persona();
@@ -30,6 +40,11 @@ public class Conversor {
         return listaPerson;
     }
 
+    /**
+     * Metodo para convertir de persona a personaVO
+     * @param person
+     * @return
+     */
     public PersonaVO convertirPersonaVO(Persona person){
         PersonaVO personVO = new PersonaVO();
         personVO.setDNIVO(person.getDNI());
@@ -42,9 +57,11 @@ public class Conversor {
     }
 
 
-
-
-
+    /**
+     * Metodo para convertir una reservaVO a reserva
+     * @param reservaVO
+     * @return
+     */
     public Reserva convertirReserva(ReservaVO reservaVO){
         Reserva reserva = new Reserva();
         reserva.setId(reservaVO.getIdVO());
@@ -58,6 +75,11 @@ public class Conversor {
         return reserva;
     }
 
+    /**
+     * Metodo para convertir una lista de reservasVO a reservas
+     * @param listaReservaVO
+     * @return
+     */
     public ArrayList<Reserva> listaReserva(ArrayList<ReservaVO> listaReservaVO){
         ArrayList<Reserva> listaReserva = new ArrayList<Reserva>();
         Reserva reserva = new Reserva();
@@ -68,6 +90,11 @@ public class Conversor {
         return listaReserva;
     }
 
+    /**
+     * Metodo para convertir de reserva a reservaVO
+     * @param reserva
+     * @return
+     */
     public ReservaVO convertirReservaVO(Reserva reserva){
         ReservaVO reservaVO = new ReservaVO();
         reservaVO.setIdVO(reserva.getId());

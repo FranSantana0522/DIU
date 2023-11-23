@@ -80,14 +80,26 @@ public class BusquedaPersonaController {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Boton para cerrar
+     * @param actionEvent
+     */
     public void handleCerrar(ActionEvent actionEvent) {
         dialogStage.close();
     }
 
+    /**
+     * Boton para vaciar el campo dni
+     * @param actionEvent
+     */
     public void handleVaciar(ActionEvent actionEvent) {
         DNIbusq.setText("");
     }
 
+    /**
+     * Boton para buscar persona por dni
+     * @param actionEvent
+     */
     public void handleBuscar(ActionEvent actionEvent) {
         try {
             PersonaVO personaVO=new PersonaVO();
@@ -129,7 +141,7 @@ public class BusquedaPersonaController {
         idC.setCellValueFactory(cellData-> cellData.getValue().idProperty().asObject());
         fechaEntradaC.setCellValueFactory(cellData-> cellData.getValue().fechaLlegadaProperty());
         fechaFinC.setCellValueFactory(cellData-> cellData.getValue().fechaFinProperty());
-        numHabC.setCellValueFactory(cellData-> cellData.getValue().idProperty().asObject());
+        numHabC.setCellValueFactory(cellData-> cellData.getValue().numHabitacionProperty().asObject());
         tipHabC.setCellValueFactory(cellData-> cellData.getValue().tipHabProperty());
         fumC.setCellValueFactory(cellData-> cellData.getValue().fumadorProperty());
         regAlojC.setCellValueFactory(cellData-> cellData.getValue().regAlojProperty());

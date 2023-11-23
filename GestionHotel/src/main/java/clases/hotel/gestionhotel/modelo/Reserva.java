@@ -15,6 +15,17 @@ public class Reserva {
     private StringProperty regAloj;
     private StringProperty DNICliente;
 
+    /**
+     * Constructor de la reserva
+     * @param id
+     * @param fechaLlegada
+     * @param fechaFin
+     * @param numHabitacion
+     * @param tipHab
+     * @param fumador
+     * @param regAloj
+     * @param DNICliente
+     */
     public Reserva(Integer id, LocalDate fechaLlegada, LocalDate fechaFin, Integer numHabitacion, String tipHab, Boolean fumador, String regAloj, String DNICliente) {
         this.id = new SimpleIntegerProperty(id);
         this.fechaLlegada = new SimpleObjectProperty<>(fechaLlegada);
@@ -26,6 +37,9 @@ public class Reserva {
         this.DNICliente = new SimpleStringProperty(DNICliente);
     }
 
+    /**
+     * Constructor de la reserva vacio
+     */
     public Reserva() {
         this(0,null,null,0,null,false,null,null);
     }

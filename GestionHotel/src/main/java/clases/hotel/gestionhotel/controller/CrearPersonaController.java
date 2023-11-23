@@ -29,6 +29,10 @@ public class CrearPersonaController {
     private boolean okClicked = false;
 
 
+    /**
+     * Un set de la persona
+     * @param person
+     */
     public void setPerson(Persona person) {
         this.person = person;
         if (person.getDNI()!=null){
@@ -56,6 +60,10 @@ public class CrearPersonaController {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Boton para aceptar
+     * @param actionEvent
+     */
     public void handleOk(ActionEvent actionEvent) {
         if (isInputValid()) {
             person.setDNI(dniField.getText());
@@ -69,13 +77,26 @@ public class CrearPersonaController {
         }
     }
 
+    /**
+     * Boton para cancelar
+     * @param actionEvent
+     */
     public void handleCancel(ActionEvent actionEvent) {
         dialogStage.close();
     }
+
+    /**
+     * Devuelve okClickled
+     * @return
+     */
     public boolean isOkClicked() {
         return okClicked;
     }
 
+    /**
+     * Comprueba que esten bien los campos
+     * @return
+     */
     private boolean isInputValid() {
         String errorMessage = "";
 
@@ -127,6 +148,10 @@ public class CrearPersonaController {
         }
     }
 
+    /**
+     * Boton para vaciar los campos
+     * @param actionEvent
+     */
     public void handleVaciar(ActionEvent actionEvent) {
         nombreField.setText("");
         apellidosField.setText("");
