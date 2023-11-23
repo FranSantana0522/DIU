@@ -6,8 +6,12 @@ import clases.hotel.gestionhotel.util.Conversor;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
+
+import java.io.File;
+import java.io.IOException;
 
 public class RootLayoutController {
 
@@ -185,8 +189,8 @@ public class RootLayoutController {
      * Metodo para generar javadoc
      * @param actionEvent
      */
-    public void handleAplication(ActionEvent actionEvent) {
-
+    public void handleAplication(ActionEvent actionEvent) throws IOException {
+        mainApp.showWebView();
     }
 
     /**
@@ -194,6 +198,7 @@ public class RootLayoutController {
      * @param actionEvent
      */
     public void handleOcupation(ActionEvent actionEvent) {
+        mainApp.showOcupacionTotal();
     }
 
     /**
@@ -202,5 +207,8 @@ public class RootLayoutController {
      */
     public void handleBusqueda(ActionEvent actionEvent) {
         mainApp.showBusquedaPersona();
+    }
+
+    public void handleOcupacionHab(ActionEvent actionEvent) {
     }
 }

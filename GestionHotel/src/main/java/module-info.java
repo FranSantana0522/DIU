@@ -6,6 +6,7 @@ module com.example.gestionhotel {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires javafx.web;
     requires java.sql;
 
     opens clases.hotel.gestionhotel to javafx.fxml;

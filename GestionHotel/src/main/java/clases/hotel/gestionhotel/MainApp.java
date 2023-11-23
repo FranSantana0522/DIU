@@ -351,4 +351,54 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+    public void showWebView() {
+        try {
+            // Load person overview.
+            //FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("JavaDoc.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Web View");
+            dialogStage.initModality(Modality.NONE);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            // Set the person into the controller.
+            WebViewController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void showOcupacionTotal() {
+        try {
+            // Load person overview.
+            //FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("PorcentajeDeOcupacionTotal.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ocupacion total");
+            dialogStage.initModality(Modality.NONE);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            // Set the person into the controller.
+            OcupacionTotalController controller = loader.getController();
+            controller.setReservaData(reservaData);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
