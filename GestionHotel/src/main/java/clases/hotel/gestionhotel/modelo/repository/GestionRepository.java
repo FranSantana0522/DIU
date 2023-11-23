@@ -10,6 +10,8 @@ public interface GestionRepository {
     ArrayList<PersonaVO> ObtenerListaPersonaVO() throws ExceptionGH;
     ArrayList<ReservaVO> ObtenerListaReservaVO(String dniC) throws ExceptionGH;
 
+    PersonaVO busquedaPersonaVO(String dniB)throws ExceptionGH;
+
     void addPersonaVO(PersonaVO var1) throws ExceptionGH;
 
     void addReservaVO(ReservaVO var1) throws ExceptionGH;

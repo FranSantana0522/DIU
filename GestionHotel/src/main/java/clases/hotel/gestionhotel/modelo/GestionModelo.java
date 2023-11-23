@@ -25,7 +25,10 @@ public class GestionModelo {
     public void deletePersonaVO(PersonaVO personaVO) throws ExceptionGH {
         gestionRepository.deletePersonaVO(personaVO.getDNIVO());
     }
-
+    public PersonaVO busquedaPersonaDNI(PersonaVO personaVO) throws ExceptionGH{
+        personaVO=gestionRepository.busquedaPersonaVO(personaVO.getDNIVO());
+        return personaVO;
+    }
 
     // GESTION DE RESERVAS
 

@@ -164,5 +164,6 @@ public class RootLayoutController {
     }
 
     public void handleBusqueda(ActionEvent actionEvent) {
+        mainApp.showBusquedaPersona();
     }
 }

@@ -1,9 +1,6 @@
 package clases.hotel.gestionhotel;
 
-import clases.hotel.gestionhotel.controller.CrearPersonaController;
-import clases.hotel.gestionhotel.controller.CrearReservaController;
-import clases.hotel.gestionhotel.controller.GestionOverviewController;
-import clases.hotel.gestionhotel.controller.RootLayoutController;
+import clases.hotel.gestionhotel.controller.*;
 import clases.hotel.gestionhotel.modelo.*;
 import clases.hotel.gestionhotel.modelo.repository.GestionRepository;
 import clases.hotel.gestionhotel.modelo.repository.impl.GestionRepositoryImpl;
@@ -108,6 +105,10 @@ public class MainApp extends Application {
     }
 
 
+    /**
+     * Metodo Start
+     * @param primaryStage Escenario principal
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -117,6 +118,10 @@ public class MainApp extends Application {
 
         showGestionOverview();
     }
+
+    /**
+     * Inicio del root layout
+     */
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.
@@ -139,39 +144,74 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Setter de i de la tabla persona
+     * @param i
+     */
     public void setI(Integer i) {
         this.i = i;
     }
 
+    /**
+     * Setter de la tabla de persona
+     * @param tablaPersona
+     */
     public void setTablaPersona(TableView<Persona> tablaPersona) {
         this.tablaPersona = tablaPersona;
     }
 
+    /**
+     * Getter de tabla persona
+     * @return
+     */
     public TableView<Persona> getTablaPersona() {
         return tablaPersona;
     }
 
+    /**
+     * Getter de i de la persona
+     * @return
+     */
     public Integer getI() {
         return i;
     }
 
+    /**
+     * Getter de  la tabla de reserva
+     * @return
+     */
     public TableView<Reserva> getTablaReserva() {
         return tablaReserva;
     }
 
+    /**
+     * Setter tabla de reserva
+     * @param tablaReserva
+     */
     public void setTablaReserva(TableView<Reserva> tablaReserva) {
         this.tablaReserva = tablaReserva;
     }
 
+    /**
+     * Getter de la i de la tabla reserva
+     * @return
+     */
     public Integer getiR() {
         return iR;
     }
 
+    /**
+     * Setter de la i de la tabla de reserva
+     * @param iR
+     */
     public void setiR(Integer iR) {
         this.iR = iR;
     }
 
 
+    /**
+     * Enseña el fxml de gestion
+     */
     public void showGestionOverview() {
         try {
             // Load person overview.
@@ -190,6 +230,12 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Enseña el crear editar persona
+     * @param person
+     * @return
+     */
     public boolean showPersonEditDialog(Persona person) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -220,6 +266,13 @@ public class MainApp extends Application {
             return false;
         }
     }
+
+    /**
+     * Enseña la reserva para crear y editar
+     * @param reserva
+     * @param persona
+     * @return
+     */
     public boolean showReservaEditDialog(Reserva reserva, Persona persona) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -250,6 +303,39 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     * 
+     */
+    public void showBusquedaPersona() {
+        try {
+            // Load person overview.
+            //FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("BusquedaPersona.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Buscar persona");
+            dialogStage.initModality(Modality.NONE);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            // Set the person into the controller.
+            BusquedaPersonaController controller = loader.getController();
+            controller.setGm(gm);
+            controller.setConv(conv);
+            controller.setDialogStage(dialogStage);
+
+
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

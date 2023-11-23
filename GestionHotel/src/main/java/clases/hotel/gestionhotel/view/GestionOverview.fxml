@@ -13,13 +13,13 @@
                         <TableView fx:id="tablaPersona" layoutY="-2.0" prefHeight="400.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="-2.0">
                             <columns>
                                 <TableColumn fx:id="nombreC" prefWidth="71.0" resizable="false" text="Nombre" />
-                                <TableColumn fx:id="apellido" prefWidth="88.0" text="Apellido" />
+                                <TableColumn fx:id="apellido" prefWidth="88.0" resizable="false" text="Apellido" />
                             </columns>
                         </TableView>
                         <TableView fx:id="tablaReserva" layoutX="186.0" layoutY="-2.0" prefHeight="400.0" prefWidth="139.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="186.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-2.0">
                             <columns>
                                 <TableColumn fx:id="id" prefWidth="30.0" resizable="false" text="ID" />
-                                <TableColumn fx:id="fechaI" prefWidth="108.0" text="Fecha Inicio" />
+                                <TableColumn fx:id="fechaI" prefWidth="108.0" resizable="false" text="Fecha Inicio" />
                             </columns>
                         </TableView>
                   <Label layoutX="163.0" layoutY="199.0" text="--&gt;" />

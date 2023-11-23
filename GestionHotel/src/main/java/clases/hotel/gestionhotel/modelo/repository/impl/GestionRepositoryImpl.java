@@ -80,6 +80,30 @@ public class GestionRepositoryImpl implements GestionRepository {
     }
 
     @Override
+    public PersonaVO busquedaPersonaVO(String dniB) throws ExceptionGH {
+        try {
+            Connection conn = this.conexion.conectarBD();
+            this.persona = new PersonaVO();
+            this.stmt = conn.createStatement();
+            String sql = String.format("SELECT * FROM Persona WHERE DNI='%s'", dniB);
+            ResultSet rs = this.stmt.executeQuery(sql);
+            while(rs.next()) {
+                String dni=rs.getString("DNI");
+                String n = rs.getString("Nombre");
+                String a = rs.getString("Apellido");
+                Integer d = rs.getInt("Direccion");
+                String lo = rs.getString("Localidad");
+                String p= rs.getString("Provincia");
+                this.persona = new PersonaVO(dni,n,a,d,lo,p);
+            }
+            this.conexion.desconectarBD(conn);
+            return this.persona;
+        }catch (SQLException var6) {
+            throw new ExceptionGH("No se puede");
+        }
+    }
+
+    @Override
     public void addPersonaVO(PersonaVO m) throws ExceptionGH {
         try {
             Connection conn = this.conexion.conectarBD();
@@ -120,7 +144,7 @@ public class GestionRepositoryImpl implements GestionRepository {
             Connection conn = this.conexion.conectarBD();
             this.stmt = conn.createStatement();
             Statement comando = conn.createStatement();
-            String sql = String.format("DELETE FROM Persona WHERE DNI = %s", DniP);
+            String sql = String.format("DELETE FROM Persona WHERE DNI = '%s'", DniP);
             comando.executeUpdate(sql);
             this.conexion.desconectarBD(conn);
         } catch (SQLException var5) {
@@ -189,7 +213,6 @@ public class GestionRepositoryImpl implements GestionRepository {
                 if(resultSet.next()){
                     lastPersonId=resultSet.getInt("AUTO_INCREMENT")-1;
                 }
-                System.out.println(lastPersonId);
                 return lastPersonId;
             }
 

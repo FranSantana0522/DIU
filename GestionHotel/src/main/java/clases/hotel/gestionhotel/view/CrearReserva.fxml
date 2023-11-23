@@ -49,9 +49,9 @@
       <Label layoutX="336.0" layoutY="243.0" text="Fecha de salida" />
       <DatePicker fx:id="fechaS" layoutX="336.0" layoutY="261.0" prefHeight="26.0" prefWidth="200.0" />
       <Label layoutX="28.0" layoutY="318.0" text="Numero de habitaciones" />
-      <Spinner fx:id="numHab" layoutX="159.0" layoutY="314.0" prefHeight="26.0" prefWidth="50.0" />
-      <Label layoutX="250.0" layoutY="318.0" text="Tipo de habitacion" />
-      <ChoiceBox fx:id="tipHab" layoutX="361.0" layoutY="314.0" prefWidth="150.0" />
+      <Spinner fx:id="numHab" layoutX="190.0" layoutY="313.0" prefHeight="26.0" prefWidth="50.0" />
+      <Label layoutX="266.0" layoutY="318.0" text="Tipo de habitacion" />
+      <ChoiceBox fx:id="tipHab" layoutX="387.0" layoutY="314.0" prefWidth="150.0" />
       <Label layoutX="28.0" layoutY="360.0" text="Regimen" />
       <RadioButton fx:id="alojYdes" layoutX="29.0" layoutY="388.0" mnemonicParsing="false" text="Alojamiento y desayuno">
          <toggleGroup>
