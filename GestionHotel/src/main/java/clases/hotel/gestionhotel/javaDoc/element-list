@@ -1,0 +1,7 @@
+module:com.example.gestionhotel
+clases.hotel.gestionhotel
+clases.hotel.gestionhotel.controller
+clases.hotel.gestionhotel.modelo
+clases.hotel.gestionhotel.modelo.repository
+clases.hotel.gestionhotel.modelo.repository.impl
+clases.hotel.gestionhotel.util

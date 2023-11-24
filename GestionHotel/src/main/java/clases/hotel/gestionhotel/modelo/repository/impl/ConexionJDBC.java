@@ -29,7 +29,6 @@ public class ConexionJDBC {
                 ex = ex.getNextException();
                 System.out.println("");
             }
-
             throw new SQLException();
         } catch (Exception var3) {
             throw new SQLException();

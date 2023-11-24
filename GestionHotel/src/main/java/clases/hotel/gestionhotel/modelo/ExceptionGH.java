@@ -6,9 +6,17 @@ public class ExceptionGH extends Exception{
     private Alert mensajeA;
     private String mensaje;
 
+    /**
+     * Constructor vacio de la exceptionGH
+     */
     public ExceptionGH() {
 
     }
+
+    /**
+     * Muestra el mensaje
+     * @param ms
+     */
     public ExceptionGH(String ms) {
         this.mensaje = ms;
     }

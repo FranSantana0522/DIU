@@ -14,6 +14,15 @@ public class Persona {
     private StringProperty provincia;
 
 
+    /**
+     * Constructor de la persona
+     * @param DNI
+     * @param nombre
+     * @param apellidos
+     * @param direccion
+     * @param localidad
+     * @param provincia
+     */
     public Persona(String DNI, String nombre, String apellidos, Integer direccion, String localidad, String provincia) {
         this.DNI = new SimpleStringProperty(DNI);
         this.nombre = new SimpleStringProperty(nombre);
@@ -23,6 +32,9 @@ public class Persona {
         this.provincia = new SimpleStringProperty("Sevilla");
     }
 
+    /**
+     * Constructor de la persona vacio
+     */
     public Persona() {
         this(null,null,null,null,null,null);
     }

@@ -60,6 +60,9 @@ public class CrearReservaController {
         this.gm = gm;
     }
 
+    /**
+     * Se ejecuta al iniciar el controlador
+     */
     @FXML
     private void initialize() {
         if(persona==null){
@@ -85,6 +88,11 @@ public class CrearReservaController {
             numHab.getValueFactory().setValue(1);
         });
     }
+
+    /**
+     * Hago un set de la persona
+     * @param person
+     */
     public void setPerson(Persona person) {
         this.person = person;
         dniR.setText(person.getDNI());
@@ -94,6 +102,11 @@ public class CrearReservaController {
         localidadR.setText(person.getLocalidad());
         provinciaR.setText(person.getProvincia());
     }
+
+    /**
+     * Hago un set de la reserva
+     * @param reserva
+     */
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
         fechaL.setValue(reserva.getFechaLlegada());
@@ -120,6 +133,10 @@ public class CrearReservaController {
         DNI_Cliente=dniR.getText();
     }
 
+    /**
+     * Boton de vaciar los campos
+     * @param actionEvent
+     */
     public void handleVaciar(ActionEvent actionEvent) {
         fechaL.getEditor().clear();
         fechaS.getEditor().clear();
@@ -130,6 +147,10 @@ public class CrearReservaController {
         fum.setSelected(false);
     }
 
+    /**
+     * Boton para aceptar
+     * @param actionEvent
+     */
     public void handleAceptar(ActionEvent actionEvent) {
         if (isInputValid()) {
             reserva.setFechaLlegada(fechaL.getValue());
@@ -152,6 +173,10 @@ public class CrearReservaController {
         }
     }
 
+    /**
+     * Boton para cancelar
+     * @param actionEvent
+     */
     public void handleCancelar(ActionEvent actionEvent) {
         dialogStage.close();
     }
@@ -160,9 +185,18 @@ public class CrearReservaController {
         this.dialogStage=dialogStage;
     }
 
+    /**
+     * Devuelve okClicked
+     * @return
+     */
     public boolean isOkClicked() {
         return okClicked;
     }
+
+    /**
+     * Comprueba que los datos esten bien introducidos
+     * @return
+     */
     private boolean isInputValid() {
         String errorMessage = "";
 

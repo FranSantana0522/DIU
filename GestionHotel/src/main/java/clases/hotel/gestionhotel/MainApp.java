@@ -41,10 +41,17 @@ public class MainApp extends Application {
     private Integer iR;
 
 
+    /**
+     * Constructor de la clase donde añado la lista de personas
+     */
     public MainApp(){
         personData.addAll(addListPersona());
     }
 
+    /**
+     * Añade a la tabla de personas las personas
+     * @return
+     */
     public ArrayList<Persona> addListPersona(){
         gm=new GestionModelo();
         conv=new Conversor();
@@ -64,6 +71,12 @@ public class MainApp extends Application {
         listaPersona=conv.listaPersona(listaPersonaVO);
         return listaPersona;
     }
+
+    /**
+     * Añade a la tabla reservas las reservas del cliente
+     * @param dniC
+     * @return
+     */
     public ArrayList<Reserva> addListReserva(String dniC){
         gm=new GestionModelo();
         conv=new Conversor();
@@ -307,7 +320,7 @@ public class MainApp extends Application {
     }
 
     /**
-     *
+     *Enseña la busqueda de la persona
      */
     public void showBusquedaPersona() {
         try {
@@ -330,6 +343,56 @@ public class MainApp extends Application {
             controller.setDialogStage(dialogStage);
 
 
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void showWebView() {
+        try {
+            // Load person overview.
+            //FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("JavaDoc.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Web View");
+            dialogStage.initModality(Modality.NONE);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            // Set the person into the controller.
+            WebViewController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void showOcupacionTotal() {
+        try {
+            // Load person overview.
+            //FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("PorcentajeDeOcupacionTotal.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ocupacion total");
+            dialogStage.initModality(Modality.NONE);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            // Set the person into the controller.
+            OcupacionTotalController controller = loader.getController();
+            controller.setReservaData(reservaData);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

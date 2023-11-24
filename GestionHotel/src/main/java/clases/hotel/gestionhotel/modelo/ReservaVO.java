@@ -13,6 +13,16 @@ public class ReservaVO {
     private String regAlojVO;
     private String DNICliente;
 
+    /**
+     * Constructor de la reservaVO
+     * @param fechaLlegadaVO
+     * @param fechaFinVO
+     * @param numHabitacionVO
+     * @param tipHabVO
+     * @param fumadorVO
+     * @param regAlojVO
+     * @param DNICliente
+     */
     public ReservaVO( LocalDate fechaLlegadaVO, LocalDate fechaFinVO, Integer numHabitacionVO, String tipHabVO, Boolean fumadorVO, String regAlojVO, String DNICliente) {
         this.idVO =0;
         this.fechaLlegadaVO = fechaLlegadaVO;
@@ -24,6 +34,9 @@ public class ReservaVO {
         this.DNICliente = DNICliente;
     }
 
+    /**
+     * Constructor de la reservaVO vacio
+     */
     public ReservaVO() {
     }
 

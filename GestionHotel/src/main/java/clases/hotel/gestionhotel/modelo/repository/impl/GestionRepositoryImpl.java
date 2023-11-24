@@ -24,6 +24,11 @@ public class GestionRepositoryImpl implements GestionRepository {
     public GestionRepositoryImpl() {
     }
 
+    /**
+     * Obtiene la lista de personasVO de la base de datos
+     * @return
+     * @throws ExceptionGH
+     */
     @Override
     public ArrayList<PersonaVO> ObtenerListaPersonaVO() throws ExceptionGH {
         try {
@@ -50,6 +55,12 @@ public class GestionRepositoryImpl implements GestionRepository {
         }
     }
 
+    /**
+     * Obtiene la lista de reservasVO a partir del dni de la persona de la base de datos
+     * @param dniC
+     * @return
+     * @throws ExceptionGH
+     */
     @Override
     public ArrayList<ReservaVO> ObtenerListaReservaVO(String dniC) throws ExceptionGH {
         try {
@@ -79,6 +90,12 @@ public class GestionRepositoryImpl implements GestionRepository {
         }
     }
 
+    /**
+     * Busca la persona por dni de la base de datos
+     * @param dniB
+     * @return
+     * @throws ExceptionGH
+     */
     @Override
     public PersonaVO busquedaPersonaVO(String dniB) throws ExceptionGH {
         try {
@@ -103,6 +120,11 @@ public class GestionRepositoryImpl implements GestionRepository {
         }
     }
 
+    /**
+     * Añade la personaVO a la base de datos
+     * @param m
+     * @throws ExceptionGH
+     */
     @Override
     public void addPersonaVO(PersonaVO m) throws ExceptionGH {
         try {
@@ -117,6 +139,11 @@ public class GestionRepositoryImpl implements GestionRepository {
         }
     }
 
+    /**
+     * Añade la reservaVO a la base de datos
+     * @param r
+     * @throws ExceptionGH
+     */
     @Override
     public void addReservaVO(ReservaVO r) throws ExceptionGH {
         try {
@@ -138,6 +165,11 @@ public class GestionRepositoryImpl implements GestionRepository {
         }
     }
 
+    /**
+     * Borrar la personaVo de la base de datos
+     * @param DniP
+     * @throws ExceptionGH
+     */
     @Override
     public void deletePersonaVO(String DniP) throws ExceptionGH {
         try {
@@ -152,6 +184,11 @@ public class GestionRepositoryImpl implements GestionRepository {
         }
     }
 
+    /**
+     * Borrar la reservaVO de la base de datos
+     * @param id
+     * @throws ExceptionGH
+     */
     @Override
     public void deleteReservaVO(Integer id) throws ExceptionGH {
         try {
@@ -166,6 +203,11 @@ public class GestionRepositoryImpl implements GestionRepository {
         }
     }
 
+    /**
+     * Editar la personaVO de la base de datos
+     * @param personaVO
+     * @throws ExceptionGH
+     */
     @Override
     public void editPersonaVO(PersonaVO personaVO) throws ExceptionGH {
         try {
@@ -178,6 +220,11 @@ public class GestionRepositoryImpl implements GestionRepository {
         }
     }
 
+    /**
+     * Edita la reservaVO en la base de datos
+     * @param reservaVO
+     * @throws ExceptionGH
+     */
     @Override
     public void editReservaVO(ReservaVO reservaVO) throws ExceptionGH {
         try {
@@ -196,6 +243,11 @@ public class GestionRepositoryImpl implements GestionRepository {
         }
     }
 
+    /**
+     * Recoge el id de la reserva ultimo introducido
+     * @return
+     * @throws ExceptionGH
+     */
     @Override
     public int lastIdReservaVO() throws ExceptionGH {
         int lastPersonId = 0;

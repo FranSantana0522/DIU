@@ -6,8 +6,12 @@ import clases.hotel.gestionhotel.util.Conversor;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
+
+import java.io.File;
+import java.io.IOException;
 
 public class RootLayoutController {
 
@@ -34,6 +38,10 @@ public class RootLayoutController {
         this.conv = conv;
     }
 
+    /**
+     * Opcion del menu para añadir persona
+     * @param actionEvent
+     */
     public void handleAddPersona(ActionEvent actionEvent) {
         Persona tempPerson = new Persona();
         boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
@@ -53,6 +61,10 @@ public class RootLayoutController {
         }
     }
 
+    /**
+     *Opcion del menu para editar la persona
+     * @param actionEvent
+     */
     public void handleEditPersona(ActionEvent actionEvent) {
         tablaPersona=mainApp.getTablaPersona();
         Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
@@ -83,6 +95,10 @@ public class RootLayoutController {
         }
     }
 
+    /**
+     * Opcion del menu para borrar persona
+     * @param actionEvent
+     */
     public void handleDeletePersona(ActionEvent actionEvent) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("No disponible");
@@ -91,6 +107,10 @@ public class RootLayoutController {
         alerta.showAndWait();
     }
 
+    /**
+     * Opcion del menu para añadir reserva
+     * @param actionEvent
+     */
     public void handleAddReserva(ActionEvent actionEvent) {
         tablaPersona=mainApp.getTablaPersona();
         Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
@@ -113,6 +133,10 @@ public class RootLayoutController {
         }
     }
 
+    /**
+     * Opcion del menu para editar la reserva
+     * @param actionEvent
+     */
     public void handleEditReserva(ActionEvent actionEvent) {
         tablaPersona=mainApp.getTablaPersona();
         Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
@@ -134,6 +158,10 @@ public class RootLayoutController {
         }
     }
 
+    /**
+     * Opcion del menu para borrar la reserva
+     * @param actionEvent
+     */
     public void handleDeleteReserva(ActionEvent actionEvent) {
         int selectedIndex = mainApp.getiR();
         if (selectedIndex >= 0) {
@@ -157,13 +185,30 @@ public class RootLayoutController {
         }
     }
 
-    public void handleAplication(ActionEvent actionEvent) {
+    /**
+     * Metodo para generar javadoc
+     * @param actionEvent
+     */
+    public void handleAplication(ActionEvent actionEvent) throws IOException {
+        mainApp.showWebView();
     }
 
+    /**
+     * Metodo para ver el porcentaje de ocupacion por mes y galeria de fotos y ocupacion de cada habitacion
+     * @param actionEvent
+     */
     public void handleOcupation(ActionEvent actionEvent) {
+        mainApp.showOcupacionTotal();
     }
 
+    /**
+     * Opcion del menu para mostrar la vista de la busquedaPersona
+     * @param actionEvent
+     */
     public void handleBusqueda(ActionEvent actionEvent) {
         mainApp.showBusquedaPersona();
+    }
+
+    public void handleOcupacionHab(ActionEvent actionEvent) {
     }
 }
