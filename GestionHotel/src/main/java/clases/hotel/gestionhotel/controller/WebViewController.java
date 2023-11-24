@@ -19,9 +19,10 @@ public class WebViewController {
     private void initialize() {
         WebEngine webEngine = webView.getEngine();
 
-        String indexPath = "C:\\Users\\FRANCISCO JAVIER\\Documents\\DIU\\GestionHotel\\src\\main\\java\\clases\\hotel\\gestionhotel\\javaDoc\\index.html";
+        String indexPathWindows = "C:\\Users\\FRANCISCO JAVIER\\Documents\\DIU\\GestionHotel\\src\\main\\java\\clases\\hotel\\gestionhotel\\javaDoc\\index.html";
+        String indexPathLinux = "/home/usuario/IdeaProjects/Agenda3-20231013T074026Z-001/DIU/GestionHotel/src/main/java/clases/hotel/gestionhotel/javaDoc/index.html";
 
-        File indexFile = new File(indexPath);
+        File indexFile = new File(indexPathLinux);
         if (indexFile.exists()) {
             String url = indexFile.toURI().toString();
             webEngine.load(url);

@@ -392,13 +392,19 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
             // Set the person into the controller.
             OcupacionTotalController controller = loader.getController();
-            controller.setReservaData(reservaData);
+            ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
+            ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
+            listaReservaVO = gm.listarReservasTodas();
+            listaReserva=conv.listaReserva(listaReservaVO);
+            controller.setReservaData(listaReserva);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ExceptionGH e) {
+            throw new RuntimeException(e);
         }
     }
 }

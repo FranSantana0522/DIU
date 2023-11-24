@@ -278,4 +278,33 @@ public class GestionRepositoryImpl implements GestionRepository {
     public int DNIpersonaVO() throws ExceptionGH {
         return 0;
     }
+
+    @Override
+    public ArrayList<ReservaVO> ObtenerListaReservaVO() throws ExceptionGH {
+        try {
+            Connection conn = this.conexion.conectarBD();
+            this.reservas = new ArrayList();
+            this.stmt = conn.createStatement();
+            String sql = String.format("SELECT * FROM Reserva");
+            ResultSet rs = this.stmt.executeQuery(sql);
+            while(rs.next()) {
+                Integer id=rs.getInt("Identificador");
+                LocalDate llegada = rs.getDate("Fecha_Llegada").toLocalDate();
+                LocalDate fin = rs.getDate("Fecha_Fin").toLocalDate();
+                Integer numH = rs.getInt("Numero_Habitaciones");
+                String tipoH = rs.getString("Tipo_Habitacion");
+                Boolean f= rs.getBoolean("Fumador");
+                String regA = rs.getString("Regimen_de_alojamiento");
+                String DNIC = rs.getString("DNI_Cliente");
+                this.reserva = new ReservaVO(llegada,fin,numH,tipoH,f,regA,DNIC);
+                reserva.setIdVO(id);
+                this.reservas.add(this.reserva);
+            }
+            this.conexion.desconectarBD(conn);
+            return this.reservas;
+        }catch (SQLException var6) {
+            var6.printStackTrace();
+            throw new ExceptionGH("No se puede");
+        }
+    }
 }

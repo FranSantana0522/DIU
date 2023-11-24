@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public interface GestionRepository {
     ArrayList<PersonaVO> ObtenerListaPersonaVO() throws ExceptionGH;
     ArrayList<ReservaVO> ObtenerListaReservaVO(String dniC) throws ExceptionGH;
+    ArrayList<ReservaVO> ObtenerListaReservaVO() throws ExceptionGH;
 
     PersonaVO busquedaPersonaVO(String dniB)throws ExceptionGH;
 

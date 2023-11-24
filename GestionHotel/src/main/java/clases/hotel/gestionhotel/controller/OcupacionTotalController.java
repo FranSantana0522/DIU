@@ -14,10 +14,12 @@ import java.util.*;
 
 public class OcupacionTotalController {
     @FXML
-    private BarChart<String, Integer> barChart;
+    private BarChart<String, Double> barChart;
 
     @FXML
     private CategoryAxis xAxis;
+
+    private Integer max=120;
 
     private ObservableList<String> monthNames = FXCollections.observableArrayList();
 
@@ -43,12 +45,14 @@ public class OcupacionTotalController {
             int monthL = p.getFechaLlegada().getMonthValue() - 1;
             int room = p.numHabitacionProperty().get();
             occupiedRoomsByMonth[monthL].add(room);
+            monthCounterL[monthL]++;
         }
 
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
 
         for (int i = 0; i < monthCounterL.length; i++) {
-            series.getData().add(new XYChart.Data<>(monthNames.get(i), occupiedRoomsByMonth[i].size()));
+            double porcentaje = ((double) occupiedRoomsByMonth[i].size() / max) * 100;
+            series.getData().add(new XYChart.Data<>(monthNames.get(i), porcentaje));
         }
         barChart.getData().add(series);
     }

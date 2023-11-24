@@ -104,6 +104,9 @@ public class GestionModelo {
     public int lastIdReserva() throws ExceptionGH {
         return gestionRepository.lastIdReservaVO();
     }
+    public ArrayList<ReservaVO> listarReservasTodas() throws ExceptionGH {
+        return gestionRepository.ObtenerListaReservaVO();
+    }
 
     public void setImpl(GestionRepository inter) {
         this.gestionRepository = inter;
