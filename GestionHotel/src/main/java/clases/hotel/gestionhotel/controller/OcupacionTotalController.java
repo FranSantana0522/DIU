@@ -36,22 +36,19 @@ public class OcupacionTotalController {
 
     public void setReservaData(List<Reserva> reservas) {
         int[] monthCounterL = new int[12];
-        Set<Integer>[] occupiedRoomsByMonth = new Set[12];
-        for (int i = 0; i < occupiedRoomsByMonth.length; i++) {
-            occupiedRoomsByMonth[i] = new HashSet<>();
-        }
+        int[] occupiedRoomsByMonth = new int[12];
 
         for (Reserva p : reservas) {
             int monthL = p.getFechaLlegada().getMonthValue() - 1;
             int room = p.numHabitacionProperty().get();
-            occupiedRoomsByMonth[monthL].add(room);
+            occupiedRoomsByMonth[monthL] = occupiedRoomsByMonth[monthL] + room;
             monthCounterL[monthL]++;
         }
 
         XYChart.Series<String, Double> series = new XYChart.Series<>();
 
         for (int i = 0; i < monthCounterL.length; i++) {
-            double porcentaje = ((double) occupiedRoomsByMonth[i].size() / max) * 100;
+            double porcentaje = ((double) occupiedRoomsByMonth[i] / max) * 100;
             series.getData().add(new XYChart.Data<>(monthNames.get(i), porcentaje));
         }
         barChart.getData().add(series);

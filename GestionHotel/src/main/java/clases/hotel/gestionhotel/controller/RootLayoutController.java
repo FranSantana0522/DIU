@@ -113,24 +113,33 @@ public class RootLayoutController {
      */
     public void handleAddReserva(ActionEvent actionEvent) {
         tablaPersona=mainApp.getTablaPersona();
-        Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
-        Reserva tempReserva = new Reserva();
-        boolean okClicked = mainApp.showReservaEditDialog(tempReserva, selectedPerson);
-        if (okClicked) {
-            try{
-                tempReserva.setId(gm.lastIdReserva()+1);
-                ReservaVO reservaVO=new ReservaVO();
-                reservaVO=conv.convertirReservaVO(tempReserva);
-                gm.crearReservaVO(reservaVO);
-                mainApp.getReservaData().add(tempReserva);
-            }catch(ExceptionGH e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Error al añadir la reserva");
-                alert.setTitle("Error con la base de datos");
-                alert.setContentText("No se puede conectar con la base de datos para añadir la reserva");
-                alert.showAndWait();
+        try {
+            Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
+            Reserva tempReserva = new Reserva();
+            boolean okClicked = mainApp.showReservaEditDialog(tempReserva, selectedPerson);
+            if (okClicked) {
+                try{
+                    tempReserva.setId(gm.lastIdReserva()+1);
+                    ReservaVO reservaVO=new ReservaVO();
+                    reservaVO=conv.convertirReservaVO(tempReserva);
+                    gm.crearReservaVO(reservaVO);
+                    mainApp.getReservaData().add(tempReserva);
+                }catch(ExceptionGH e){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Error al añadir la reserva");
+                    alert.setTitle("Error con la base de datos");
+                    alert.setContentText("No se puede conectar con la base de datos para añadir la reserva");
+                    alert.showAndWait();
+                }
             }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error: seleccione una persona");
+            alert.setTitle("Error al mostrar la reserva");
+            alert.setContentText("Tiene que seleccionar la persona para mostrar la reserva");
+            alert.showAndWait();
         }
+
     }
 
     /**
