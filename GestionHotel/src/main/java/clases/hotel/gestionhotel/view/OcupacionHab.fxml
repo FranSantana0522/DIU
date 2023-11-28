@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clases.hotel.gestionhotel.controller.OcupacionHabController">
    <children>
       <TabPane layoutX="106.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -17,6 +21,8 @@
                               <Image url="@dobleindi.jpeg" />
                            </image>
                         </ImageView>
+                         <ProgressIndicator fx:id="progressDI" layoutX="250.0" layoutY="300.0" progress="0.0" />
+                         <Label layoutX="286.0" layoutY="300.0" text="Total Ocupado" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -29,6 +35,8 @@
                               <Image url="@doble.jpeg" />
                            </image>
                         </ImageView>
+                         <ProgressIndicator fx:id="progressD" layoutX="250.0" layoutY="330.0" progress="0.0" />
+                         <Label layoutX="286.0" layoutY="330.0" text="Total Ocupado" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -41,6 +49,8 @@
                               <Image url="@juniorsuit.jpeg" />
                            </image>
                         </ImageView>
+                         <ProgressIndicator fx:id="progressJS" layoutX="250.0" layoutY="280.0" progress="0.0" />
+                         <Label layoutX="286.0" layoutY="280.0" text="Total Ocupado" />
                      </children></AnchorPane>
                 </content>
             </Tab>
@@ -53,7 +63,8 @@
                               <Image url="@suite.jpeg" />
                            </image>
                         </ImageView>
-                        <ProgressIndicator layoutX="200.0" layoutY="280.0" progress="0.0" />
+                        <ProgressIndicator fx:id="progressS" layoutX="250.0" layoutY="280.0" progress="0.0" />
+                        <Label layoutX="286.0" layoutY="280.0" text="Total Ocupado" />
                      </children></AnchorPane>
                 </content>
             </Tab>

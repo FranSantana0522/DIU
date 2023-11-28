@@ -44,8 +44,12 @@ public class MainApp extends Application {
     /**
      * Constructor de la clase donde añado la lista de personas
      */
-    public MainApp(){
+    public MainApp() throws ExceptionGH {
         personData.addAll(addListPersona());
+        gm.setNumeroReservas(listarDI().size());
+        gm.setNumeroReservas2(listarD().size());
+        gm.setNumeroReservas3(listarJS().size());
+        gm.setNumeroReservas4(listarS().size());
     }
 
     /**
@@ -114,6 +118,7 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) throws ExceptionGH {
+
         launch(args);
     }
 
@@ -392,11 +397,7 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
             // Set the person into the controller.
             OcupacionTotalController controller = loader.getController();
-            ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
-            ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
-            listaReservaVO = gm.listarReservasTodas();
-            listaReserva=conv.listaReserva(listaReservaVO);
-            controller.setReservaData(listaReserva);
+            controller.setReservaData(listarTodo());
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -406,5 +407,90 @@ public class MainApp extends Application {
         } catch (ExceptionGH e) {
             throw new RuntimeException(e);
         }
+    }
+    public ArrayList<Reserva> listarTodo() throws ExceptionGH {
+        ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
+        ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
+        listaReservaVO = gm.listarReservasTodas();
+        listaReserva=conv.listaReserva(listaReservaVO);
+        return listaReserva;
+    }
+    public void showOcupacionHab() {
+        try {
+            // Load person overview.
+            //FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("OcupacionHab.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ocupacion por habitacion");
+            dialogStage.initModality(Modality.NONE);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            // Set the person into the controller.
+            OcupacionHabController controller = loader.getController();
+            controller.setGestionModelo(gm);
+
+            controller.setProgress();
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public ArrayList<Reserva> listarDI() throws ExceptionGH {
+        ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
+        ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
+        ArrayList<Reserva>listaReservaFiltrada = new ArrayList<Reserva>();
+        listaReservaVO = gm.listarReservasTodas();
+        listaReserva=conv.listaReserva(listaReservaVO);
+        for(int indi=0;indi<listaReserva.size();indi++){
+            if(listaReserva.get(indi).getTipHab().equals("Doble de uso individual")){
+                listaReservaFiltrada.add(listaReserva.get(indi));
+            }
+        }
+        return listaReservaFiltrada;
+    }
+    public ArrayList<Reserva> listarD() throws ExceptionGH {
+        ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
+        ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
+        ArrayList<Reserva>listaReservaFiltrada = new ArrayList<Reserva>();
+        listaReservaVO = gm.listarReservasTodas();
+        listaReserva=conv.listaReserva(listaReservaVO);
+        for(int indi=0;indi<listaReserva.size();indi++){
+            if(listaReserva.get(indi).getTipHab().equals("Doble")){
+                listaReservaFiltrada.add(listaReserva.get(indi));
+            }
+        }
+        return listaReservaFiltrada;
+    }
+    public ArrayList<Reserva> listarJS() throws ExceptionGH {
+        ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
+        ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
+        ArrayList<Reserva>listaReservaFiltrada = new ArrayList<Reserva>();
+        listaReservaVO = gm.listarReservasTodas();
+        listaReserva=conv.listaReserva(listaReservaVO);
+        for(int indi=0;indi<listaReserva.size();indi++){
+            if(listaReserva.get(indi).getTipHab().equals("Junior suite")){
+                listaReservaFiltrada.add(listaReserva.get(indi));
+            }
+        }
+        return listaReservaFiltrada;
+    }
+    public ArrayList<Reserva> listarS() throws ExceptionGH {
+        ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
+        ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
+        ArrayList<Reserva>listaReservaFiltrada = new ArrayList<Reserva>();
+        listaReservaVO = gm.listarReservasTodas();
+        listaReserva=conv.listaReserva(listaReservaVO);
+        for(int indi=0;indi<listaReserva.size();indi++){
+            if(listaReserva.get(indi).getTipHab().equals("Suite")){
+                listaReservaFiltrada.add(listaReserva.get(indi));
+            }
+        }
+        return listaReservaFiltrada;
     }
 }

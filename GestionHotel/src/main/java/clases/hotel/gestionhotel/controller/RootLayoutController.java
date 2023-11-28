@@ -124,6 +124,15 @@ public class RootLayoutController {
                     reservaVO=conv.convertirReservaVO(tempReserva);
                     gm.crearReservaVO(reservaVO);
                     mainApp.getReservaData().add(tempReserva);
+                    if(tempReserva.getTipHab().equals("Doble de uso individual")){
+                        gm.incNumeroPersonas();
+                    }else if (tempReserva.getTipHab().equals("Doble")){
+                        gm.incNumeroPersonas2();
+                    }else if (tempReserva.getTipHab().equals("Junior suite")){
+                        gm.incNumeroPersonas3();
+                    }else if (tempReserva.getTipHab().equals("Suite")){
+                        gm.incNumeroPersonas4();
+                    }
                 }catch(ExceptionGH e){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Error al añadir la reserva");
@@ -172,26 +181,38 @@ public class RootLayoutController {
      * @param actionEvent
      */
     public void handleDeleteReserva(ActionEvent actionEvent) {
-        int selectedIndex = mainApp.getiR();
-        if (selectedIndex >= 0) {
-            try {
-                gm.deleteReservaVO(conv.convertirReservaVO((tablaReserva.getItems().get(selectedIndex))));
-                tablaReserva.getItems().remove(selectedIndex);
-            }catch (ExceptionGH e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Error al eliminar la persona");
-                alert.setTitle("Error con la base de datos");
-                alert.setContentText("No se puede conectar con la base de datos para eliminar la persona");
-                alert.showAndWait();
+        if(mainApp.getiR()!=null){
+            int selectedIndex = mainApp.getiR();
+            tablaReserva=mainApp.getTablaReserva();
+            if (selectedIndex >= 0) {
+                try {
+                    gm.deleteReservaVO(conv.convertirReservaVO((tablaReserva.getItems().get(selectedIndex))));
+                    if(tablaReserva.getItems().get(selectedIndex).getTipHab().equals("Doble de uso individual")){
+                        gm.decNumeroReservas();
+                    }else if (tablaReserva.getItems().get(selectedIndex).getTipHab().equals("Doble")){
+                        gm.decNumeroReservas2();
+                    }else if (tablaReserva.getItems().get(selectedIndex).getTipHab().equals("Junior suite")){
+                        gm.decNumeroReservas3();
+                    }else if (tablaReserva.getItems().get(selectedIndex).getTipHab().equals("Suite")){
+                        gm.decNumeroReservas4();
+                    }
+                    tablaReserva.getItems().remove(selectedIndex);
+                }catch (ExceptionGH e){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Error al eliminar la persona");
+                    alert.setTitle("Error con la base de datos");
+                    alert.setContentText("No se puede conectar con la base de datos para eliminar la persona");
+                    alert.showAndWait();
+                }
             }
-        } else {
-            // Nothing selected.
+        }else {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("No Selection");
-            alerta.setHeaderText("No Person Selected");
-            alerta.setContentText("Please select a person in the table.");
+            alerta.setTitle("No seleccionado");
+            alerta.setHeaderText("Reserva no seleccionada");
+            alerta.setContentText("Selecciona una reserva.");
             alerta.showAndWait();
         }
+
     }
 
     /**
@@ -219,5 +240,6 @@ public class RootLayoutController {
     }
 
     public void handleOcupacionHab(ActionEvent actionEvent) {
+        mainApp.showOcupacionHab();
     }
 }

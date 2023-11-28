@@ -17,7 +17,7 @@
       </TableView>
       <TextField fx:id="DNIbusq" layoutX="214.0" layoutY="39.0" promptText="DNI" />
       <Label layoutX="248.0" layoutY="14.0" text="Introduzca DNI" />
-      <Button layoutX="392.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleBuscar" styleClass="btnLupa" stylesheets="@imageCSS.css" />
+      <Button fx:id="lupa" layoutX="392.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleBuscar" styleClass="btnLupa" stylesheets="@imageCSS.css" />
       <TableView fx:id="tablaReserva" layoutY="155.0" prefHeight="207.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="idC" prefWidth="30.0" resizable="false" text="ID" />

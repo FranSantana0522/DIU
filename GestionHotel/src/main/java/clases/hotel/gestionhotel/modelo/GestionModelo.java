@@ -1,11 +1,68 @@
 package clases.hotel.gestionhotel.modelo;
 
 import clases.hotel.gestionhotel.modelo.repository.GestionRepository;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.ArrayList;
 
 public class GestionModelo {
     GestionRepository gestionRepository;
+    IntegerProperty numeroReservasDI=new SimpleIntegerProperty();
+    public void setNumeroReservas(Integer nP){
+        this.numeroReservasDI.set(nP);
+    }
+    public  void decNumeroReservas(){
+        this.numeroReservasDI.set(numeroReservasDI.get()-1);
+    }public  void incNumeroPersonas() {
+        this.numeroReservasDI.set(numeroReservasDI.get()+1);
+    }
+
+    public IntegerProperty getNumeroReservasProperty() {
+        return numeroReservasDI;
+    }
+
+    IntegerProperty numeroReservasD=new SimpleIntegerProperty();
+    public void setNumeroReservas2(Integer nP){
+        this.numeroReservasD.set(nP);
+    }
+    public  void decNumeroReservas2(){
+        this.numeroReservasD.set(numeroReservasD.get()-1);
+    }public  void incNumeroPersonas2() {
+        this.numeroReservasD.set(numeroReservasD.get()+1);
+    }
+
+    public IntegerProperty getNumeroReservasProperty2() {
+        return numeroReservasD;
+    }
+
+    IntegerProperty numeroReservasJS=new SimpleIntegerProperty();
+    public void setNumeroReservas3(Integer nP){
+        this.numeroReservasJS.set(nP);
+    }
+    public  void decNumeroReservas3(){
+        this.numeroReservasJS.set(numeroReservasJS.get()-1);
+    }public  void incNumeroPersonas3() {
+        this.numeroReservasJS.set(numeroReservasJS.get()+1);
+    }
+
+    public IntegerProperty getNumeroReservasProperty3() {
+        return numeroReservasJS;
+    }
+
+    IntegerProperty numeroReservasS=new SimpleIntegerProperty();
+    public void setNumeroReservas4(Integer nP){
+        this.numeroReservasS.set(nP);
+    }
+    public  void decNumeroReservas4(){
+        this.numeroReservasS.set(numeroReservasS.get()-1);
+    }public  void incNumeroPersonas4() {
+        this.numeroReservasS.set(numeroReservasS.get()+1);
+    }
+
+    public IntegerProperty getNumeroReservasProperty4() {
+        return numeroReservasS;
+    }
 
     /**
      * Constructor de gestion modelo vacio

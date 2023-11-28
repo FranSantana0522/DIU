@@ -5,13 +5,14 @@ import clases.hotel.gestionhotel.util.Conversor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -52,7 +53,8 @@ public class BusquedaPersonaController {
     @FXML
     private TableColumn<Reserva, String> regAlojC;
     private Stage dialogStage;
-
+    @FXML
+    private Button lupa;
     private Conversor conv;
     private GestionModelo gm;
 
@@ -98,9 +100,9 @@ public class BusquedaPersonaController {
 
     /**
      * Boton para buscar persona por dni
-     * @param actionEvent
+     *
      */
-    public void handleBuscar(ActionEvent actionEvent) {
+    public void handleBuscar() {
         try {
             PersonaVO personaVO=new PersonaVO();
             personaVO.setDNIVO(DNIbusq.getText());
@@ -111,6 +113,12 @@ public class BusquedaPersonaController {
                 listaPersonas.add(persona);
             }
         }catch (ExceptionGH e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error con la lista de la persona");
+            alert.setTitle("Error con la base de datos");
+            alert.setContentText("No se puede conectar con la base de datos para buscar la persona o no existe la persona");
+            alert.showAndWait();
+        }catch (RuntimeException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Error al buscar la persona");
             alert.setTitle("Error con la base de datos");
@@ -147,4 +155,19 @@ public class BusquedaPersonaController {
         regAlojC.setCellValueFactory(cellData-> cellData.getValue().regAlojProperty());
         tablaReserva.setItems(listaReservas);
     }
+
+    @FXML
+    public void initialize() {
+        DNIbusq.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER) {
+                    handleBuscar();
+                }
+            }
+        });
+    }
+
+
+
 }
