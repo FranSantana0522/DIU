@@ -449,7 +449,16 @@ public class MainApp extends Application {
         listaReserva=conv.listaReserva(listaReservaVO);
         for(int indi=0;indi<listaReserva.size();indi++){
             if(listaReserva.get(indi).getTipHab().equals("Doble de uso individual")){
-                listaReservaFiltrada.add(listaReserva.get(indi));
+                LocalDate fechaActual = LocalDate.now();
+                LocalDate fechaLlegada = listaReserva.get(indi).getFechaLlegada();
+                LocalDate fechaFin = listaReserva.get(indi).getFechaFin();
+                boolean fechaAntesDeHoy = fechaActual.isAfter(fechaLlegada)
+                        || fechaActual.equals(fechaLlegada);
+                boolean fechaDespuesDeHoy = fechaActual.isBefore(fechaFin);
+
+                if (fechaAntesDeHoy && fechaDespuesDeHoy ) {
+                    listaReservaFiltrada.add(listaReserva.get(indi));
+                }
             }
         }
         return listaReservaFiltrada;
@@ -462,7 +471,16 @@ public class MainApp extends Application {
         listaReserva=conv.listaReserva(listaReservaVO);
         for(int indi=0;indi<listaReserva.size();indi++){
             if(listaReserva.get(indi).getTipHab().equals("Doble")){
-                listaReservaFiltrada.add(listaReserva.get(indi));
+                LocalDate fechaActual = LocalDate.now();
+                LocalDate fechaLlegada = listaReserva.get(indi).getFechaLlegada();
+                LocalDate fechaFin = listaReserva.get(indi).getFechaFin();
+                boolean fechaAntesDeHoy = fechaActual.isAfter(fechaLlegada)
+                        || fechaActual.equals(fechaLlegada);;
+                boolean fechaDespuesDeHoy = fechaActual.isBefore(fechaFin);
+
+                if (fechaAntesDeHoy && fechaDespuesDeHoy ) {
+                    listaReservaFiltrada.add(listaReserva.get(indi));
+                }
             }
         }
         return listaReservaFiltrada;
@@ -475,7 +493,16 @@ public class MainApp extends Application {
         listaReserva=conv.listaReserva(listaReservaVO);
         for(int indi=0;indi<listaReserva.size();indi++){
             if(listaReserva.get(indi).getTipHab().equals("Junior suite")){
-                listaReservaFiltrada.add(listaReserva.get(indi));
+                LocalDate fechaActual = LocalDate.now();
+                LocalDate fechaLlegada = listaReserva.get(indi).getFechaLlegada();
+                LocalDate fechaFin = listaReserva.get(indi).getFechaFin();
+                boolean fechaAntesDeHoy = fechaActual.isAfter(fechaLlegada)
+                        || fechaActual.equals(fechaLlegada);;
+                boolean fechaDespuesDeHoy = fechaActual.isBefore(fechaFin);
+
+                if (fechaAntesDeHoy && fechaDespuesDeHoy ) {
+                    listaReservaFiltrada.add(listaReserva.get(indi));
+                }
             }
         }
         return listaReservaFiltrada;
@@ -488,7 +515,16 @@ public class MainApp extends Application {
         listaReserva=conv.listaReserva(listaReservaVO);
         for(int indi=0;indi<listaReserva.size();indi++){
             if(listaReserva.get(indi).getTipHab().equals("Suite")){
-                listaReservaFiltrada.add(listaReserva.get(indi));
+                LocalDate fechaActual = LocalDate.now();
+                LocalDate fechaLlegada = listaReserva.get(indi).getFechaLlegada();
+                LocalDate fechaFin = listaReserva.get(indi).getFechaFin();
+                boolean fechaAntesDeHoy = fechaActual.isAfter(fechaLlegada)
+                        || fechaActual.equals(fechaLlegada);
+                boolean fechaDespuesDeHoy = fechaActual.isBefore(fechaFin);
+
+                if (fechaAntesDeHoy && fechaDespuesDeHoy ) {
+                    listaReservaFiltrada.add(listaReserva.get(indi));
+                }
             }
         }
         return listaReservaFiltrada;
