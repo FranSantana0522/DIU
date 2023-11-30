@@ -14,7 +14,8 @@ public class GestionModelo {
     }
     public  void decNumeroReservas(){
         this.numeroReservasDI.set(numeroReservasDI.get()-1);
-    }public  void incNumeroPersonas() {
+    }
+    public  void incNumeroPersonas() {
         this.numeroReservasDI.set(numeroReservasDI.get()+1);
     }
 
@@ -28,7 +29,8 @@ public class GestionModelo {
     }
     public  void decNumeroReservas2(){
         this.numeroReservasD.set(numeroReservasD.get()-1);
-    }public  void incNumeroPersonas2() {
+    }
+    public  void incNumeroPersonas2() {
         this.numeroReservasD.set(numeroReservasD.get()+1);
     }
 
@@ -42,7 +44,8 @@ public class GestionModelo {
     }
     public  void decNumeroReservas3(){
         this.numeroReservasJS.set(numeroReservasJS.get()-1);
-    }public  void incNumeroPersonas3() {
+    }
+    public  void incNumeroPersonas3() {
         this.numeroReservasJS.set(numeroReservasJS.get()+1);
     }
 
@@ -56,7 +59,8 @@ public class GestionModelo {
     }
     public  void decNumeroReservas4(){
         this.numeroReservasS.set(numeroReservasS.get()-1);
-    }public  void incNumeroPersonas4() {
+    }
+    public  void incNumeroPersonas4() {
         this.numeroReservasS.set(numeroReservasS.get()+1);
     }
 

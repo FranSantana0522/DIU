@@ -157,22 +157,38 @@ public class RootLayoutController {
      */
     public void handleEditReserva(ActionEvent actionEvent) {
         tablaPersona=mainApp.getTablaPersona();
-        Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
-        tablaReserva=mainApp.getTablaReserva();
-        Reserva selectedReserva =tablaReserva.getItems().get(mainApp.getiR());
-        boolean okClicked = mainApp.showReservaEditDialog(selectedReserva, selectedPerson);
-        if (okClicked) {
-            try{
-                ReservaVO reservaVO=new ReservaVO();
-                reservaVO=conv.convertirReservaVO(selectedReserva);
-                gm.editarReservaVO(reservaVO);
-            }catch(ExceptionGH e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Error al añadir la reserva");
-                alert.setTitle("Error con la base de datos");
-                alert.setContentText("No se puede conectar con la base de datos para añadir la reserva");
-                alert.showAndWait();
+        if(mainApp.getI()!=null) {
+            Persona selectedPerson = tablaPersona.getItems().get(mainApp.getI());
+            tablaReserva = mainApp.getTablaReserva();
+            if(mainApp.getiR()!=null) {
+                Reserva selectedReserva = tablaReserva.getItems().get(mainApp.getiR());
+                boolean okClicked = mainApp.showReservaEditDialog(selectedReserva, selectedPerson);
+                if (okClicked) {
+                    try {
+                        ReservaVO reservaVO = new ReservaVO();
+                        reservaVO = conv.convertirReservaVO(selectedReserva);
+                        gm.editarReservaVO(reservaVO);
+                    } catch (ExceptionGH e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText("Error al añadir la reserva");
+                        alert.setTitle("Error con la base de datos");
+                        alert.setContentText("No se puede conectar con la base de datos para añadir la reserva");
+                        alert.showAndWait();
+                    }
+                }
+            }else {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("No seleccionado");
+                alerta.setHeaderText("Reserva no seleccionada");
+                alerta.setContentText("Selecciona una reserva.");
+                alerta.showAndWait();
             }
+        }else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("No seleccionado");
+            alerta.setHeaderText("Persona no seleccionada");
+            alerta.setContentText("Selecciona una Persona.");
+            alerta.showAndWait();
         }
     }
 
