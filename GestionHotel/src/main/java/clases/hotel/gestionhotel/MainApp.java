@@ -411,7 +411,15 @@ public class MainApp extends Application {
     public ArrayList<Reserva> listarTodo() throws ExceptionGH {
         ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
         ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
-        listaReservaVO = gm.listarReservasTodas();
+        try{
+            listaReservaVO = gm.listarReservasTodas();
+        } catch (ExceptionGH e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error al listar las personas.");
+            alert.setTitle("Error con la base de datos");
+            alert.setContentText("No se puede conectar con la base de datos");
+            alert.showAndWait();
+        }
         listaReserva=conv.listaReserva(listaReservaVO);
         return listaReserva;
     }
@@ -445,7 +453,15 @@ public class MainApp extends Application {
         ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
         ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
         ArrayList<Reserva>listaReservaFiltrada = new ArrayList<Reserva>();
-        listaReservaVO = gm.listarReservasTodas();
+        try{
+            listaReservaVO = gm.listarReservasTodas();
+        } catch (ExceptionGH e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error al listar las personas.");
+            alert.setTitle("Error con la base de datos");
+            alert.setContentText("No se puede conectar con la base de datos");
+            alert.showAndWait();
+        }
         listaReserva=conv.listaReserva(listaReservaVO);
         for(int indi=0;indi<listaReserva.size();indi++){
             if(listaReserva.get(indi).getTipHab().equals("Doble de uso individual")){
@@ -467,7 +483,15 @@ public class MainApp extends Application {
         ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
         ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
         ArrayList<Reserva>listaReservaFiltrada = new ArrayList<Reserva>();
-        listaReservaVO = gm.listarReservasTodas();
+        try{
+            listaReservaVO = gm.listarReservasTodas();
+        } catch (ExceptionGH e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error al listar las personas.");
+            alert.setTitle("Error con la base de datos");
+            alert.setContentText("No se puede conectar con la base de datos");
+            alert.showAndWait();
+        }
         listaReserva=conv.listaReserva(listaReservaVO);
         for(int indi=0;indi<listaReserva.size();indi++){
             if(listaReserva.get(indi).getTipHab().equals("Doble")){
@@ -489,7 +513,15 @@ public class MainApp extends Application {
         ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
         ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
         ArrayList<Reserva>listaReservaFiltrada = new ArrayList<Reserva>();
-        listaReservaVO = gm.listarReservasTodas();
+        try{
+            listaReservaVO = gm.listarReservasTodas();
+        } catch (ExceptionGH e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error al listar las personas.");
+            alert.setTitle("Error con la base de datos");
+            alert.setContentText("No se puede conectar con la base de datos");
+            alert.showAndWait();
+        }
         listaReserva=conv.listaReserva(listaReservaVO);
         for(int indi=0;indi<listaReserva.size();indi++){
             if(listaReserva.get(indi).getTipHab().equals("Junior suite")){
@@ -511,7 +543,15 @@ public class MainApp extends Application {
         ArrayList<ReservaVO>listaReservaVO = new ArrayList<ReservaVO>();
         ArrayList<Reserva>listaReserva = new ArrayList<Reserva>();
         ArrayList<Reserva>listaReservaFiltrada = new ArrayList<Reserva>();
-        listaReservaVO = gm.listarReservasTodas();
+        try{
+            listaReservaVO = gm.listarReservasTodas();
+        } catch (ExceptionGH e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error al listar las personas.");
+            alert.setTitle("Error con la base de datos");
+            alert.setContentText("No se puede conectar con la base de datos");
+            alert.showAndWait();
+        }
         listaReserva=conv.listaReserva(listaReservaVO);
         for(int indi=0;indi<listaReserva.size();indi++){
             if(listaReserva.get(indi).getTipHab().equals("Suite")){

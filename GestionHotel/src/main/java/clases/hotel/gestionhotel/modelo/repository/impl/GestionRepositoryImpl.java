@@ -303,7 +303,6 @@ public class GestionRepositoryImpl implements GestionRepository {
             this.conexion.desconectarBD(conn);
             return this.reservas;
         }catch (SQLException var6) {
-            var6.printStackTrace();
             throw new ExceptionGH("No se puede");
         }
     }
