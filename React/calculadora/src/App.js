@@ -74,7 +74,7 @@ function App() {
         <div className="botones">
           <Button caracter='()'setPantalla={parentesis}></Button> 
           <Button caracter='0' setPantalla={caracteres}></Button>
-          <Button caracter='. ' setPantalla={caracteres}></Button>
+          <Button caracter='.' setPantalla={caracteres}></Button>
           <Button caracter='=' setPantalla={igual}></Button>
         </div>
         </div>

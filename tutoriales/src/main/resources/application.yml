@@ -1,0 +1,11 @@
+server:
+  port: 8098
+spring:
+  application:
+    name: microservice
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    mongodb:
+      database: product-servicer_db
+      port: 27017
