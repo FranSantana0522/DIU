@@ -18,18 +18,22 @@ public class TutorialesServiceImpl implements TutorialesService {
     private TutorialesRepository tutorialesRepository;
 
     @Override
-    public List<TutorialesVO> getAllTutorials() {
-        return tutorialesRepository.findAll();
+    public List<TutorialesVO> getAllTutorials(String titulo) {
+        if (titulo != null) {
+            return tutorialesRepository.findByTituloContaining(titulo);
+        } else {
+            return tutorialesRepository.findAll();
+        }
     }
 
     @Override
     public Optional<TutorialesVO> getTutorialsById(String id) {
-        return Optional.empty();
+        return tutorialesRepository.findById(id);
     }
 
     @Override
     public List<TutorialesVO> findByPublished() {
-        return null;
+        return tutorialesRepository.findByPublicadoTrue();
     }
 
     @Override
@@ -39,16 +43,25 @@ public class TutorialesServiceImpl implements TutorialesService {
 
     @Override
     public TutorialesVO updateTutorial(TutorialesVO tutorial, String id) {
-        return null;
+        Optional<TutorialesVO> tutorialEdit = tutorialesRepository.findById(id);
+        if (tutorialEdit.isPresent()) {
+            TutorialesVO realTutorial = tutorialEdit.get();
+            realTutorial.setTitulo(tutorial.getTitulo());
+            realTutorial.setDescripcion(tutorial.getDescripcion());
+            realTutorial.setPublicado(tutorial.isPublicado());
+            return tutorialesRepository.save(realTutorial);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public ResponseEntity deleteTutorial(String id) {
-        return null;
+    public void deleteTutorial(String id) {
+        tutorialesRepository.deleteById(id);
     }
 
     @Override
-    public ResponseEntity deleteAllTutorials() {
-        return null;
+    public void deleteAllTutorials() {
+        tutorialesRepository.deleteAll();
     }
 }

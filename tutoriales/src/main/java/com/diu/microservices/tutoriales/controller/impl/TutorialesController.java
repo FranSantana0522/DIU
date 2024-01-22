@@ -24,18 +24,19 @@ public class TutorialesController implements TutorialesAPI {
 
     @Override
     @GetMapping("/tutorials")
-    public List<TutorialesVO> getAllTutorials(){
-        return tutorialesService.getAllTutorials();
+    public List<TutorialesVO> getAllTutorials(@RequestParam(required = false)String titulo){
+        return tutorialesService.getAllTutorials(titulo);
     }
 
     @Override
-    public Optional<TutorialesVO> getTutorialsById(String id) {
-        return Optional.empty();
+    @GetMapping("/tutorial/{id}")
+    public Optional<TutorialesVO> getTutorialsById(@PathVariable  String id) {
+        return tutorialesService.getTutorialsById(id);
     }
 
     @Override
     public List<TutorialesVO> findByPublished() {
-        return null;
+        return tutorialesService.findByPublished();
     }
 
     @Override
@@ -45,17 +46,20 @@ public class TutorialesController implements TutorialesAPI {
     }
 
     @Override
-    public TutorialesVO updateTutorial(TutorialesVO tutorial, String id) {
-        return null;
+    @PutMapping("/editTuto/{id}")
+    public TutorialesVO updateTutorial(@RequestBody TutorialesVO tutorial,@PathVariable  String id) {
+        return tutorialesService.updateTutorial(tutorial,id);
     }
 
     @Override
-    public ResponseEntity deleteTutorial(String id) {
-        return null;
+    @DeleteMapping("/deleteTuto/{id}")
+    public void deleteTutorial(@PathVariable  String id) {
+        tutorialesService.deleteTutorial(id);
     }
 
     @Override
-    public ResponseEntity deleteAllTutorials() {
-        return null;
+    @DeleteMapping("/deleteAll")
+    public void deleteAllTutorials() {
+        tutorialesService.deleteAllTutorials();
     }
 }

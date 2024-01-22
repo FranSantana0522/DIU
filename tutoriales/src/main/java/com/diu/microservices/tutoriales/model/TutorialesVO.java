@@ -18,4 +18,5 @@ public class TutorialesVO {
     private String titulo;
     private String descripcion;
     private boolean publicado;
+
 }
