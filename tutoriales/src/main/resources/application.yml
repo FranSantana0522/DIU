@@ -7,5 +7,6 @@ spring:
     allow-bean-definition-overriding: true
   data:
     mongodb:
-      database: product-servicer_db
+      host: 182.28.0.11
+#      database: product-servicer_db
       port: 27017
