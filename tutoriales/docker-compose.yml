@@ -23,8 +23,8 @@ services:
       mired2:
         ipv4_address: 182.28.0.12
     expose:
-      - 8098
+      - 80
     ports:
-      - "8098:8098"
+      - "80:8098"
     depends_on:
       - db
