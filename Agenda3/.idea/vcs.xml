@@ -2,5 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../React/contadorapp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../React/contadorappfunction" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../React/logincontrol" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../React/miprimeraappreact" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../React/renderizadocondicional" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../React/renderizadocondicionalfuncionapp" vcs="Git" />
   </component>
 </project>

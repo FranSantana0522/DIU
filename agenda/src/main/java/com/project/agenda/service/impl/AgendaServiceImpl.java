@@ -4,10 +4,12 @@ import com.project.agenda.model.AgendaVO;
 import com.project.agenda.repository.AgendaRepository;
 import com.project.agenda.service.AgendaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AgendaServiceImpl implements AgendaService {
     @Autowired
     private AgendaRepository agendaRepository;

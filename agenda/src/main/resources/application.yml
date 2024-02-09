@@ -1,0 +1,12 @@
+server:
+  port: 8099
+spring:
+  application:
+    name: microservice
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    mongodb:
+      host: localhost #192.168.100.10
+      database: agenda-db
+      port: 27017
