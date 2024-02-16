@@ -38,7 +38,7 @@ class App extends Component {
           {  <Route exact path="/add" component={Tutorialadd} /> }
           {  <Route path="/tutorials/:id" component={Tutorial} /> }
           </Switch>
-        </div>
+        </div>	
       </div>
     );
   }
