@@ -27,40 +27,15 @@ function App() {
         </div>
       </div>
 
-      {/*En otro componente tabla*/}
+      {/*En otro componente tabla Switch*/}
       <div className="container">
-      <div className="row">
-          <div className="col">
-            <table className="table table-dark table-striped caption-top table-borderless table-hover">
-            <caption>Lista de personas</caption>
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Edad</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>John Doe</td>
-                  <td>30</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jane Smith</td>
-                  <td>25</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Bob Johnson</td>
-                  <td>40</td>
-                </tr>
-              </tbody>
-            </table>
-            <button className="btn btn-danger">Borrar todo</button>
-          </div>
-        </div>
+      <Switch>
+          {/*El en switch se renderizarán todas los compoentes cuta URL coicidan con la activa*/}
+            <Route exact path={["/", "/agenda"]} component={AgendaList} />
+          {  <Route exact path="/add" component={AgendaAdd} /> }
+          {  <Route path="/agenda/:id" component={AgendaEdit} /> }
+          </Switch>
+      {/**/}
       </div>
 
     </div>
