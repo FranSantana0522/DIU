@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import {BrowserRouter as Router, Link } from "react-router-dom";
 import AgendaDataService from "../services/agenda.service.js";
 
 class AgendaList extends Component {
@@ -57,6 +57,7 @@ class AgendaList extends Component {
     render() {
         const { searchTitle, agenda, currentAgenda, currentIndex } = this.state;
         return (
+          <Router>
             <div className="row">
           <div className="col">
             <table className="table table-dark table-striped caption-top table-borderless table-hover">
@@ -72,31 +73,22 @@ class AgendaList extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  {agenda && agenda.map((agenda, index) => (
-                    <th onClick={() => this.setActiveAgenda(agenda,index)} key={index}>
-                      {agenda.id}
-                    </th>
-                  ))}
-                  <th scope="row">1</th>
-                  <td>John Doe</td>
-                  <td>30</td>
+              {agenda && agenda.map((agenda, index) => (
+                <tr onClick={() => this.setActiveAgenda(agenda,index)} key={index} scope='row'>
+                  <th >{agenda.id}</th>
+                  <th>{agenda.nombre}</th>
+                  <td>{agenda.apellidos}</td>
+                  <td>{agenda.fechaNacimiento}</td>
+                  <td>{agenda.direccion}</td>
+                  <td>{agenda.localidad}</td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jane Smith</td>
-                  <td>25</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Bob Johnson</td>
-                  <td>40</td>
-                </tr>
+                ))}
               </tbody>
             </table>
-            <button className="btn btn-danger">Borrar todo</button>
+            <button className="btn btn-danger" onClick={this.removeAllAgenda}>Borrar todo</button>
           </div>
   </div>
+  </Router>
         );
     }
 }

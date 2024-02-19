@@ -5,40 +5,54 @@ import fotoPerfil from './images/fotoPerfil.jpg';
 import './css/styles.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+import AgendaList from './components/AgendaList';
+
 function App() {
 
   return (
-    //Administrador añadir editar borrar
+    <Router>
+    {/*Administrador añadir editar borrar*/}
     <div className='container-fluid'>
         
       <div className='navbar navbar-expand-lg navbar-light bg-dark row'>
         <div className="col-3">
-          <a className="navbar-brand text-light" href="#home">Agenda</a>
+          <Link to={"/agenda"} className="navbar-brand text-light">
+            Agenda
+          </Link>
         </div>
         <div className="col-3">     
-                <a className="nav-link text-light" href="#home">Añadir persona</a>
+        <Link to={"/add"} className="navbar-brand text-light">
+            Añadir persona
+          </Link>
         </div>
         <div className="col-3 d-flex align-items-center">    
-                <a className="nav-link text-light me-1  " href="#link">11 caracter</a>
-                <img src={fotoPerfil} alt="Perfil" href="#link" className="img-fluid rounded-5" style={{ maxHeight: '3vh' }}/>     
+        <Link to={"/user"} className="navbar-brand text-light">
+            Usuario
+          <img src={fotoPerfil} alt="Perfil" className="img-fluid rounded-5 ms-2" style={{ maxHeight: '3vh' }}/>     
+        </Link>
         </div>
         <div className="col-3">
-                <a className="nav-link text-light" href="#link">Cerrar sesion</a>
+        <Link to={"/agenda"} className="navbar-brand text-light">
+            Cerrar sesion
+          </Link>
         </div>
       </div>
 
       {/*En otro componente tabla Switch*/}
-      <div className="container">
+      <div className="container-fluid">
+    
       <Switch>
           {/*El en switch se renderizarán todas los compoentes cuta URL coicidan con la activa*/}
             <Route exact path={["/", "/agenda"]} component={AgendaList} />
-          {  <Route exact path="/add" component={AgendaAdd} /> }
-          {  <Route path="/agenda/:id" component={AgendaEdit} /> }
+          { /* <Route exact path="/add" component={AgendaAdd} />*/ }
+          { /* <Route path="/agenda/:id" component={AgendaEdit} /> */}
           </Switch>
+    
       {/**/}
       </div>
-
+      
     </div>
+    </Router>
   );
 }
 
