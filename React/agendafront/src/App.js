@@ -6,6 +6,8 @@ import './css/styles.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import AgendaList from './components/AgendaList';
+import AgendaEdit from './components/AgendaEdit';
+import AgendaAdd from './components/AgendaAdd';
 
 function App() {
 
@@ -44,9 +46,9 @@ function App() {
       <Switch>
           {/*El en switch se renderizarán todas los compoentes cuta URL coicidan con la activa*/}
             <Route exact path={["/", "/agenda"]} component={AgendaList} />
-          { /* <Route exact path="/add" component={AgendaAdd} />*/ }
-          { /* <Route path="/agenda/:id" component={AgendaEdit} /> */}
-          </Switch>
+          { <Route exact path="/add" component={AgendaAdd} />}
+          { <Route path="/agenda/:id" component={AgendaEdit} />}
+      </Switch>
     
       {/**/}
       </div>

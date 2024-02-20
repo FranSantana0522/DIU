@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import AgendaDataService from "../services/agenda.service.js";
 
-
-class AgendaEdit extends Component {
-    constructor(props){
-        super(props)
+class AgendaAdd extends Component {
+    constructor(props) {
+        super(props);
+        this.takeId=this.takeId.bind(this);
         this.takeName=this.takeName.bind(this);
         this.takeApellidos=this.takeApellidos.bind(this);
         this.takeFecha=this.takeFecha.bind(this);
@@ -21,96 +21,91 @@ class AgendaEdit extends Component {
             localidad:''
         };
     }
-    componentDidMount(){
-        const agenda = this.props.match.params
+
+    takeId(e){
+        const id = e.target.value;
+        console.log(id)
         this.setState({
-          id: agenda.id,
-          nombre: agenda.nombre,
-          apellidos: agenda.apellidos,
-          fechaNacimiento: agenda.fechaNacimiento,
-          direccion: agenda.direccion,
-          localidad: agenda.localidad
-        });  
-        console.log(agenda)
+          id: id
+        });
     }
     takeName(e){
         const name = e.target.value;
         console.log(name)
         this.setState({
-            nombre: name
+          nombre: name
         });
     }
     takeApellidos(e){
         const apell = e.target.value;
         console.log(apell)
         this.setState({
-            apellidos: apell
+          apellidos: apell
         });
     }
     takeFecha(e){
-        const naci = e.target.value;
-        console.log(naci)
+        const fech = e.target.value;
+        console.log(fech)
         this.setState({
-            fechaNacimiento: naci
+          fechaNacimiento: fech
         });
     }
     takeDireccion(e){
         const direc = e.target.value;
         console.log(direc)
         this.setState({
-            direccion: direc
+          direccion: direc
         });
     }
     takeLocalidad(e){
         const loca = e.target.value;
         console.log(loca)
         this.setState({
-            localidad: loca
+          localidad: loca
         });
     }
-    editAgenda(){
-        AgendaDataService.update(this.state.id,this.state).then(response => { 
+    addAgenda(){
+        AgendaDataService.create(this.state).then(response => { 
           console.log(response.data);
         })
         .catch(e => {
           console.log(e);
         });
     }
-
-    render(){
-        return(
-            <div className='container-fluid'>
-                <h4 className='form.label'>Editar Contacto</h4>
+    render() { 
+        return (  
+            <div className='container-fluid mt-2'>
+                <h4 className='form.label'>Añadir Contacto</h4>
                 <div className="mb-3">
                     <label for="id" className="form-label">ID</label>
-                    <input type="text" className="form-control" id="id" placeholder="" value={this.state.id} readOnly="true"/>
+                    <input type="text" className="form-control" id="id" placeholder="Introduce id" onChange={this.takeId}/>
                 </div>
                 <div className="mb-3">
                     <label for="nombre" className="form-label">Nombre</label>
-                    <input type="text" className="form-control" id="nombre" placeholder="" value={this.state.nombre} onChange={this.takeName}/>
+                    <input type="text" className="form-control" id="nombre" placeholder="Introduce nombre" onChange={this.takeName}/>
                 </div>
                 <div className="mb-3">
                     <label for="apellidos" className="form-label">Apellidos</label>
-                    <input type="text" className="form-control" id="apellidos" placeholder="" value={this.state.apellidos} onChange={this.takeApellidos}/>
+                    <input type="text" className="form-control" id="apellidos" placeholder="Introduce apellidos" onChange={this.takeApellidos}/>
                 </div>
                 <div className="mb-3">
                     <label for="fechaNacimiento" className="form-label">Fecha Nacimiento</label>
-                    <input type="text" className="form-control" id="fechaNacimiento" placeholder="" value={this.state.fechaNacimiento} onChange={this.takeFecha}/>
+                    <input type="text" className="form-control" id="fechaNacimiento" placeholder="Introduce fecha nacimiento" onChange={this.takeFecha}/>
                 </div>
                 <div className="mb-3">
                     <label for="direccion" className="form-label">Direccion</label>
-                    <input type="text" className="form-control" id="direccion" placeholder="" value={this.state.direccion} onChange={this.takeDireccion}/>
+                    <input type="text" className="form-control" id="direccion" placeholder="Introduce direccion" onChange={this.takeDireccion}/>
                 </div>
                 <div className="mb-3">
                     <label for="localidad" className="form-label">Localidad</label>
-                    <input type="text" className="form-control" id="localidad" placeholder="" value={this.state.localidad} onChange={this.takeLocalidad}/>
+                    <input type="text" className="form-control" id="localidad" placeholder="Introduce localidad" onChange={this.takeLocalidad}/>
                 </div>
                 <div className='mb-3'>
-                <button className="btn btn-success" onClick={this.editAgenda}>Aceptar</button>
+                <button className="btn btn-success" onClick={this.addAgenda}>Aceptar</button>
               </div>
             </div>
         );
     }
 }
-
-export default AgendaEdit;
+ 
+export default AgendaAdd;

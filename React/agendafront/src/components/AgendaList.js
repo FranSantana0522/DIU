@@ -81,6 +81,9 @@ class AgendaList extends Component {
                   <td>{agenda.fechaNacimiento}</td>
                   <td>{agenda.direccion}</td>
                   <td>{agenda.localidad}</td>
+                  <td>
+                      <Link to={{pathname: `/agenda/${agenda.id}`,state: { agenda: agenda }}}>Editar</Link>
+                  </td>
                 </tr>
                 ))}
               </tbody>
