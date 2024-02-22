@@ -1,3 +1,14 @@
 .navbar{
     height: 10vh
 }
+
+.color{
+    background-color: bisque;
+}
+html{
+    background-color: bisque;
+}
+.colorUser{
+    background-color: rgb(240, 209, 163);
+    height: 85vh;
+}

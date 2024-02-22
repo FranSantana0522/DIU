@@ -9,11 +9,14 @@ class AgendaList extends Component {
         this.refreshList=this.refreshList.bind(this);
         this.setActiveAgenda=this.setActiveAgenda.bind(this);
         this.removeAllAgenda=this.removeAllAgenda.bind(this);
+        this.totalAgenda=this.totalAgenda.bind(this);
+
         this.state = {
             agenda: [], //lista de agenda
             currentAgenda: null, //contacto seleccionado de la lista
             currentIndex: -1,
-            searchTitle: ""
+            searchTitle: "",
+            peopleAgenda: 0
           };
     }
     componentDidMount() {
@@ -54,10 +57,15 @@ class AgendaList extends Component {
             console.log(e);
           });
     }
+    totalAgenda(){
+      this.peopleAgenda=this.state.agenda.length
+      return (this.peopleAgenda*100)/50
+    }
     render() {
-        const { searchTitle, agenda, currentAgenda, currentIndex } = this.state;
+        const { searchTitle, agenda, currentAgenda, currentIndex, peopleAgenda } = this.state;
         return (
           <Router>
+          
             <div className="row">
           <div className="col">
             <table className="table table-dark table-striped caption-top table-borderless table-hover">
@@ -70,25 +78,31 @@ class AgendaList extends Component {
                   <th scope='col'>Fecha nacimiento</th>
                   <th scope='col'>Direccion</th>
                   <th scope='col'>Localidad</th>
+                  <th scope='col'>Edicion</th>
                 </tr>
               </thead>
               <tbody>
               {agenda && agenda.map((agenda, index) => (
                 <tr onClick={() => this.setActiveAgenda(agenda,index)} key={index} scope='row'>
-                  <th >{agenda.id}</th>
+                  <th>{agenda.id}</th>
                   <th>{agenda.nombre}</th>
                   <td>{agenda.apellidos}</td>
                   <td>{agenda.fechaNacimiento}</td>
                   <td>{agenda.direccion}</td>
                   <td>{agenda.localidad}</td>
                   <td>
-                      <Link to={{pathname: `/agenda/${agenda.id}`,state: { agenda: agenda }}}>Editar</Link>
+                      <Link to={{pathname: `/agenda/${agenda.id}`,state: { agenda: agenda }}} className="text-decoration-none text-warning">Editar</Link>
                   </td>
                 </tr>
                 ))}
               </tbody>
             </table>
             <button className="btn btn-danger" onClick={this.removeAllAgenda}>Borrar todo</button>
+            <div className='mt-3 progress mb-3'>
+              <div className="progress-bar bg-info" role="progressbar" style={{ width: `${this.totalAgenda()}%` }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                {this.totalAgenda()}%
+              </div>
+            </div>
           </div>
   </div>
   </Router>

@@ -8,13 +8,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import AgendaList from './components/AgendaList';
 import AgendaEdit from './components/AgendaEdit';
 import AgendaAdd from './components/AgendaAdd';
+import AgendaUser from './components/AgendaUser';
 
 function App() {
 
   return (
     <Router>
     {/*Administrador añadir editar borrar*/}
-    <div className='container-fluid'>
+    <div className='container-fluid color'>
         
       <div className='navbar navbar-expand-lg navbar-light bg-dark row'>
         <div className="col-3">
@@ -41,13 +42,14 @@ function App() {
       </div>
 
       {/*En otro componente tabla Switch*/}
-      <div className="container-fluid">
+      <div className="container-fluid mt-3">
     
       <Switch>
           {/*El en switch se renderizarán todas los compoentes cuta URL coicidan con la activa*/}
             <Route exact path={["/", "/agenda"]} component={AgendaList} />
           { <Route exact path="/add" component={AgendaAdd} />}
           { <Route path="/agenda/:id" component={AgendaEdit} />}
+            <Route exact path="/user" component={AgendaUser}/>
       </Switch>
     
       {/**/}

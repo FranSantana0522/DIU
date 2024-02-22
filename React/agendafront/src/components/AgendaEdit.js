@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import AgendaDataService from "../services/agenda.service.js";
+import agendaService from '../services/agenda.service.js';
 
 
 class AgendaEdit extends Component {
@@ -11,6 +12,8 @@ class AgendaEdit extends Component {
         this.takeFecha=this.takeFecha.bind(this);
         this.takeDireccion=this.takeDireccion.bind(this);
         this.takeLocalidad=this.takeLocalidad.bind(this);
+        this.editAgenda=this.editAgenda.bind(this);
+        this.removeAgenda=this.removeAgenda.bind(this);
 
         this.state = {
             id: '',
@@ -18,21 +21,23 @@ class AgendaEdit extends Component {
             apellidos:'',
             fechaNacimiento:'',
             direccion:'',
-            localidad:''
+            localidad:'',
+            redirect:false
         };
     }
-    componentDidMount(){
-        const agenda = this.props.match.params
+    componentDidMount() {
+        const agenda = this.props.location.state.agenda;
         this.setState({
-          id: agenda.id,
-          nombre: agenda.nombre,
-          apellidos: agenda.apellidos,
-          fechaNacimiento: agenda.fechaNacimiento,
-          direccion: agenda.direccion,
-          localidad: agenda.localidad
-        });  
+            id: agenda.id,
+            nombre: agenda.nombre,
+            apellidos: agenda.apellidos,
+            fechaNacimiento: agenda.fechaNacimiento,
+            direccion: agenda.direccion,
+            localidad: agenda.localidad
+        });
         console.log(agenda)
     }
+    
     takeName(e){
         const name = e.target.value;
         console.log(name)
@@ -71,15 +76,28 @@ class AgendaEdit extends Component {
     editAgenda(){
         AgendaDataService.update(this.state.id,this.state).then(response => { 
           console.log(response.data);
+          this.setState({ redirect: true });
         })
         .catch(e => {
           console.log(e);
         });
     }
-
+    removeAgenda() {
+        AgendaDataService.delete(this.state.id)
+          .then(response => {
+            console.log(response.data);
+            this.setState({ redirect: true });
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    }
     render(){
-        return(
-            <div className='container-fluid'>
+        if (this.state.redirect) {
+            return <Redirect to='/' />; 
+        }
+        return(  
+            <div className='container-fluid colorUser colorUser border border-5 border-dark shadow-lg rounded-4'>
                 <h4 className='form.label'>Editar Contacto</h4>
                 <div className="mb-3">
                     <label for="id" className="form-label">ID</label>
@@ -107,6 +125,7 @@ class AgendaEdit extends Component {
                 </div>
                 <div className='mb-3'>
                 <button className="btn btn-success" onClick={this.editAgenda}>Aceptar</button>
+                <button className="btn btn-danger ms-5" onClick={this.removeAgenda}>Borrar</button>
               </div>
             </div>
         );

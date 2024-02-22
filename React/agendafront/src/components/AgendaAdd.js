@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import AgendaDataService from "../services/agenda.service.js";
 
 class AgendaAdd extends Component {
@@ -11,6 +11,7 @@ class AgendaAdd extends Component {
         this.takeFecha=this.takeFecha.bind(this);
         this.takeDireccion=this.takeDireccion.bind(this);
         this.takeLocalidad=this.takeLocalidad.bind(this);
+        this.addAgenda=this.addAgenda.bind(this);
 
         this.state = {
             id: '',
@@ -18,7 +19,8 @@ class AgendaAdd extends Component {
             apellidos:'',
             fechaNacimiento:'',
             direccion:'',
-            localidad:''
+            localidad:'',
+            redirect:false
         };
     }
 
@@ -67,14 +69,18 @@ class AgendaAdd extends Component {
     addAgenda(){
         AgendaDataService.create(this.state).then(response => { 
           console.log(response.data);
+          this.setState({ redirect: true });
         })
         .catch(e => {
           console.log(e);
         });
     }
     render() { 
+        if (this.state.redirect) {
+            return <Redirect to='/' />; 
+        }
         return (  
-            <div className='container-fluid mt-2'>
+            <div className='container-fluid mt-2 colorUser border border-5 border-dark shadow-lg rounded-4'>
                 <h4 className='form.label'>Añadir Contacto</h4>
                 <div className="mb-3">
                     <label for="id" className="form-label">ID</label>
