@@ -9,6 +9,7 @@ import AgendaList from './components/AgendaList';
 import AgendaEdit from './components/AgendaEdit';
 import AgendaAdd from './components/AgendaAdd';
 import AgendaUser from './components/AgendaUser';
+import AgendaLogin from './components/AgendaLogin';
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
         </Link>
         </div>
         <div className="col-3">
-        <Link to={"/agenda"} className="navbar-brand text-light">
+        <Link to={"/login"} className="navbar-brand text-light">
             Cerrar sesion
           </Link>
         </div>
@@ -50,6 +51,7 @@ function App() {
           { <Route exact path="/add" component={AgendaAdd} />}
           { <Route path="/agenda/:id" component={AgendaEdit} />}
             <Route exact path="/user" component={AgendaUser}/>
+            <Route exact path="/login" component={AgendaLogin}/>
       </Switch>
     
       {/**/}
