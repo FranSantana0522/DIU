@@ -29,6 +29,7 @@ class AgendaList extends Component {
             this.setState({
               agenda: response.data
             });
+            this.props.setTamaño(response.data.length)
             console.log(response.data);
           })
           .catch(e => {
@@ -49,15 +50,18 @@ class AgendaList extends Component {
         });
     }
     removeAllAgenda() {
-        AgendaDataService.deleteAll()
-          .then(response => {
-            console.log(response.data);
-            this.refreshList();
-          })
-          .catch(e => {
-            console.log(e);
-          });
-    }
+      const confirmDelete = window.confirm("¿Estás seguro de que deseas borrar todos los elementos de la agenda?");
+      if (confirmDelete) {
+          AgendaDataService.deleteAll()
+              .then(response => {
+                  console.log(response.data);
+                  this.refreshList();
+              })
+              .catch(e => {
+                  console.log(e);
+              });
+      }
+  }
     totalAgenda(){
       this.peopleAgenda=this.state.agenda.length
       return (this.peopleAgenda*100)/50

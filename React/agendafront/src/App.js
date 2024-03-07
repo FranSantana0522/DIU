@@ -5,7 +5,7 @@ import fotoPerfil from './images/fotoPerfil.jpg';
 import './css/styles.css';
 import {useState, useEffect, useContext} from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { generateUserDocument } from './firebase';
+import { getUserDocument, auth} from './firebase';
 import UserProvider, { UserContext } from "./provider/UserProvider";
 
 import AgendaList from './components/AgendaList';
@@ -16,16 +16,20 @@ import AgendaLogin from './components/AgendaLogin';
 
 function App() {
   const [logeado,setLogeado]=useState(false);
+  const [tamaño,setTamaño]=useState(0);
+
   useEffect(() => {
     // Aquí puedes poner cualquier lógica que quieras ejecutar cuando `logeado` cambie
     console.log('El estado logeado ha cambiado:', logeado);
   }, [logeado]);
+  useEffect(() => {
+    // Aquí puedes poner cualquier lógica que quieras ejecutar cuando `logeado` cambie
+    console.log('El estado tamaño ha cambiado:', tamaño);
+  }, [tamaño]);
 
+  const user = useContext(UserContext);
+  const {photoURL, displayName, email} = user;
 
-    const user = useContext(UserContext);
-    const {photoURL, displayName, email} = user;
-  
-  
   return (
     <UserProvider>
     <Router>
@@ -50,14 +54,22 @@ function App() {
         }
         </div>
         <div className="col-3 d-flex align-items-center">    
-        <Link to={"/user"} className="navbar-brand text-light">
-            {displayName!= null ? displayName: "Usuario"}
-          <img src={photoURL!=null ?photoURL:fotoPerfil} alt="Perfil" className="img-fluid rounded-5 ms-2" style={{ maxHeight: '3vh' }}/>     
-        </Link>
+        {logeado ?
+          <Link to={"/user"} className="navbar-brand text-light">
+          {displayName}
+          <img src={photoURL} alt="Perfil" className="img-fluid rounded-5 ms-2" style={{ maxHeight: '3vh' }}/>     
+          </Link>
+        :
+          <div className="navbar-brand text-light">
+            Usuario
+          <img src={fotoPerfil} alt="Perfil" className="img-fluid rounded-5 ms-2" style={{ maxHeight: '3vh' }}/>     
+          </div>
+         }
+        
         </div>
         <div className="col-3">
           {logeado ?
-        <Link to={"/login"} className="navbar-brand text-light">
+        <Link to={"/login"} onClick = {() => {auth.signOut()}} className="navbar-brand text-light">
             Cerrar sesion
           </Link>
           :
@@ -68,16 +80,15 @@ function App() {
         </div>
       </div>
 
-      {/*En otro componente tabla Switch*/}
       <div className="container-fluid mt-3">
     
       <Switch>
           {/*El en switch se renderizarán todas los compoentes cuta URL coicidan con la activa*/}
-          <Route exact path={["/", "/agenda"]} render={(props) => <AgendaList {...props} logeado={logeado} />} />
-          {<Route exact path="/add" component={AgendaAdd} />}
+          <Route exact path={["/", "/agenda"]} render={(props) => <AgendaList {...props} logeado={logeado} setTamaño={setTamaño} />} />
+          {<Route exact path="/add" render={(props) => <AgendaAdd {...props} tamaño={tamaño} />} />}
           { <Route path="/agenda/:id" render={(props) => <AgendaEdit {...props} logeado={logeado} setLogeado={setLogeado} />} />}
             <Route exact path="/user" component={AgendaUser}/>
-            <Route exact path="/login" render={(props) => <AgendaLogin {...props} setLogeado={setLogeado} />} />
+            <Route exact path="/login" render={(props) => <AgendaLogin {...props} setLogeado={setLogeado}/>} />
       </Switch>
     
       </div>

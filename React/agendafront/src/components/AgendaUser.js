@@ -5,9 +5,8 @@ import fotoPerfil from '../images/fotoPerfil.jpg';
 import UserProvider, { UserContext } from "../provider/UserProvider";
 
 const AgendaUser = () => {
-    
-    const user = useContext(UserContext);
 
+    const user = useContext(UserContext);
     const {photoURL, displayName, email} = user;
     console.log(user);
 
