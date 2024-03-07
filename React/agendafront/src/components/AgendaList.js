@@ -10,7 +10,7 @@ class AgendaList extends Component {
         this.setActiveAgenda=this.setActiveAgenda.bind(this);
         this.removeAllAgenda=this.removeAllAgenda.bind(this);
         this.totalAgenda=this.totalAgenda.bind(this);
-
+        
         this.state = {
             agenda: [], //lista de agenda
             currentAgenda: null, //contacto seleccionado de la lista
@@ -22,6 +22,7 @@ class AgendaList extends Component {
     componentDidMount() {
         this.retrieveAgenda();
     }
+
     retrieveAgenda() {
         AgendaDataService.getAll()
           .then(response => {
@@ -78,7 +79,9 @@ class AgendaList extends Component {
                   <th scope='col'>Fecha nacimiento</th>
                   <th scope='col'>Direccion</th>
                   <th scope='col'>Localidad</th>
-                  <th scope='col'>Edicion</th>
+                  {this.props.logeado && (
+                    <th scope='col'>Edicion</th>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -90,14 +93,18 @@ class AgendaList extends Component {
                   <td>{agenda.fechaNacimiento}</td>
                   <td>{agenda.direccion}</td>
                   <td>{agenda.localidad}</td>
+                  {this.props.logeado && (
                   <td>
                       <Link to={{pathname: `/agenda/${agenda.id}`,state: { agenda: agenda }}} className="text-decoration-none text-warning">Editar</Link>
                   </td>
+                  )}:
                 </tr>
                 ))}
               </tbody>
             </table>
-            <button className="btn btn-danger" onClick={this.removeAllAgenda}>Borrar todo</button>
+            {this.props.logeado && (
+               <button className="btn btn-danger" onClick={this.removeAllAgenda}>Borrar todo</button>
+            )}
             <div className='mt-3 progress mb-3'>
               <div className="progress-bar bg-info" role="progressbar" style={{ width: `${this.totalAgenda()}%` }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                 {this.totalAgenda()}%

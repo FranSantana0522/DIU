@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import AgendaDataService from "../services/agenda.service.js";
 import agendaService from '../services/agenda.service.js';
 
@@ -14,7 +14,7 @@ class AgendaEdit extends Component {
         this.takeLocalidad=this.takeLocalidad.bind(this);
         this.editAgenda=this.editAgenda.bind(this);
         this.removeAgenda=this.removeAgenda.bind(this);
-
+        console.log(this.props.logeado)
         this.state = {
             id: '',
             nombre:'',
@@ -36,6 +36,7 @@ class AgendaEdit extends Component {
             localidad: agenda.localidad
         });
         console.log(agenda)
+        this.props.setLogeado(true);
     }
     
     takeName(e){
@@ -76,7 +77,7 @@ class AgendaEdit extends Component {
     editAgenda(){
         AgendaDataService.update(this.state.id,this.state).then(response => { 
           console.log(response.data);
-          this.setState({ redirect: true });
+          this.props.history.push("/", { logeado: this.props.logeado });
         })
         .catch(e => {
           console.log(e);
@@ -86,16 +87,14 @@ class AgendaEdit extends Component {
         AgendaDataService.delete(this.state.id)
           .then(response => {
             console.log(response.data);
-            this.setState({ redirect: true });
+            this.props.history.push("/", { logeado: this.props.logeado });
           })
           .catch(e => {
             console.log(e);
           });
     }
     render(){
-        if (this.state.redirect) {
-            return <Redirect to='/' />; 
-        }
+        
         return(  
             <div className='container-fluid colorUser colorUser border border-5 border-dark shadow-lg rounded-4'>
                 <h4 className='form.label'>Editar Contacto</h4>
